@@ -10,7 +10,7 @@ export default function EvidencePage() {
     <>
       <div className="page-eyebrow">Audit readiness</div>
       <div className="page-title">Evidence</div>
-      <div className="page-lede">Everything that proves your compliance, in one place — including advice from resolved matters, which files itself here automatically.</div>
+      <div className="page-lede">Everything that proves your compliance, in one place, including advice from resolved matters, which files itself here automatically.</div>
 
       <div style={{ display: 'flex', gap: 10, marginBottom: 18 }}>
         <button className="btn btn-primary" onClick={() => showToast('Audit pack generated', 'ok')}>

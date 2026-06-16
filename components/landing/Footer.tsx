@@ -25,12 +25,12 @@ export function Footer() {
               <h5>Company</h5>
               <Link href="/demo">Book a demo</Link>
               <Link href="/sign-in">Sign in</Link>
-              <a href="mailto:hello@noracomply.eu">Contact</a>
+              <a href="mailto:hello@noracomply.com">Contact</a>
             </div>
           </div>
         </div>
         <div className="foot-bot">
-          <span>© 2026 Nora Comply · noracomply.eu</span>
+          <span>© 2026 Nora Comply · <a href="https://noracomply.com" style={{ color: 'inherit' }}>noracomply.com</a></span>
           <span>Made for the EU AI Act</span>
         </div>
       </div>

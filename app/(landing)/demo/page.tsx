@@ -61,7 +61,7 @@ export default function DemoPage() {
               </span>
               <span>
                 <span className="lbl">Email us</span>
-                <a href="mailto:hello@noracomply.eu">hello@noracomply.eu</a>
+                <a href="mailto:hello@noracomply.com">hello@noracomply.com</a>
               </span>
             </div>
             <ul className="expect">

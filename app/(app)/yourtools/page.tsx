@@ -15,7 +15,7 @@ export default function YourToolsPage() {
         <div className="lede-wrap">
           <div className="page-eyebrow">Tools &amp; use cases</div>
           <div className="page-title">Your tools</div>
-          <div className="page-lede">Each tool, and the specific ways you use it. Open a tool to see its use cases — every use case links to the checklist items it triggers, because your obligations apply again for each new tool and each new way you use one.</div>
+          <div className="page-lede">Each tool, and the specific ways you use it. Open a tool to see its use cases: every use case links to the checklist items it triggers, because your obligations apply again for each new tool and each new way you use one.</div>
         </div>
         <button className="btn btn-primary" onClick={() => setRegisterOpen(true)}><IconPlus /> Register AI system</button>
       </div>

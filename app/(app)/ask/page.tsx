@@ -120,7 +120,7 @@ export default function AskPage() {
         thread: [{
           who: 'sys',
           name: 'NC',
-          txt: "Matter created from Ask Nora. Context bundle attached automatically — external counsel will confirm scope and a fixed fee before any work begins.",
+          txt: "Matter created from Ask Nora. Context bundle attached automatically: external counsel will confirm scope and a fixed fee before any work begins.",
           meta: 'System · just now',
         }],
       }
@@ -144,7 +144,7 @@ export default function AskPage() {
     <>
       <div className="page-eyebrow">Grounded answers · cite or be silent</div>
       <div className="page-title">Ask Nora</div>
-      <div className="page-lede">Answers are retrieved from the Act, official guidance, and <b>your own records</b> — never guessed. Every claim carries a citation; anything needing legal judgment hands off to your firm in one click.</div>
+      <div className="page-lede">Answers are retrieved from the Act, official guidance, and <b>your own records</b>, never guessed. Every claim carries a citation; anything needing legal judgment hands off to your firm in one click.</div>
 
       <div className="chips">
         {CHIPS.map(c => (
@@ -159,7 +159,7 @@ export default function AskPage() {
               <div className="who">N</div>
               <div className="bubble">
                 <span className="conf law">● Grounded in law</span>
-                <p>Hi — I answer from the EU AI Act, official guidance, and your own tool register and evidence. If I can&apos;t ground an answer, I&apos;ll say so and offer to brief your law firm instead of guessing.</p>
+                <p>Hi. I answer from the EU AI Act, official guidance, and your own tool register and evidence. If I can&apos;t ground an answer, I&apos;ll say so and offer to brief your law firm instead of guessing.</p>
                 <p>Try one of the suggestions above, or ask anything.</p>
               </div>
             </div>

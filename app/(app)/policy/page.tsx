@@ -10,7 +10,7 @@ export default function PolicyPage() {
     <>
       <div className="page-eyebrow">Policy studio</div>
       <div className="page-title">Internal AI policy</div>
-      <div className="page-lede">Generated from the guardrails you&apos;ve applied — and kept in step with them, so your policy and your real controls never drift apart.</div>
+      <div className="page-lede">Generated from the guardrails you&apos;ve applied, and kept in step with them, so your policy and your real controls never drift apart.</div>
 
       <div style={{ display: 'flex', gap: 10, marginBottom: 18 }}>
         <button className="btn btn-primary" onClick={() => showToast('Policy synced from checklist', 'ok')}>

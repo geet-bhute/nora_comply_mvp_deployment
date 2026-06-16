@@ -90,7 +90,7 @@ export default function Home() {
               </ul>
             </div>
             <div className="snap-frame">
-              <div className="snap-cap"><span className="dot" />noracomply.eu/app · Roadmap</div>
+              <div className="snap-cap"><span className="dot" />noracomply.com/app · Roadmap</div>
               <MockRoadmap />
             </div>
           </div>
@@ -100,8 +100,8 @@ export default function Home() {
               <span className="step"><span className="n">2</span>Risk-rating engine</span>
               <h3>Risk-rate any AI tool you use</h3>
               <p>
-                Point Nora at a tool — like Bullhorn&apos;s new &ldquo;Match&nbsp;%&rdquo; scoring
-                — and get a clear risk level, the reasons behind it, and the exact guardrails to
+                Point Nora at a tool (like Bullhorn&apos;s new &ldquo;Match&nbsp;%&rdquo; scoring)
+                and get a clear risk level, the reasons behind it, and the exact guardrails to
                 put in place before you use it.
               </p>
               <ul>
@@ -111,7 +111,7 @@ export default function Home() {
               </ul>
             </div>
             <div className="snap-frame">
-              <div className="snap-cap"><span className="dot" />noracomply.eu/app · Risk assessment</div>
+              <div className="snap-cap"><span className="dot" />noracomply.com/app · Risk assessment</div>
               <MockRiskRate />
             </div>
           </div>
@@ -122,7 +122,7 @@ export default function Home() {
               <h3>Monitoring that keeps watch for you</h3>
               <p>
                 Vendors add AI features without telling you. Nora watches the tools you use and
-                flags new features the moment they appear — then re-scores the risk and updates
+                flags new features the moment they appear, then re-scores the risk and updates
                 your roadmap.
               </p>
               <ul>
@@ -132,7 +132,7 @@ export default function Home() {
               </ul>
             </div>
             <div className="snap-frame">
-              <div className="snap-cap"><span className="dot" />noracomply.eu/app · Monitoring</div>
+              <div className="snap-cap"><span className="dot" />noracomply.com/app · Monitoring</div>
               <MockMonitoring />
             </div>
           </div>
@@ -147,7 +147,7 @@ export default function Home() {
             <h2>Your obligations depend on how you use AI</h2>
             <p>
               If your business uses AI systems, you have compliance obligations to meet. What you
-              must do depends on what you use your AI for — and that determines its risk level.
+              must do depends on what you use your AI for, and that determines its risk level.
               Limited-risk systems carry transparency duties; high-risk systems carry stringent
               obligations.
             </p>
@@ -168,7 +168,7 @@ export default function Home() {
               <div>
                 <h4>Transparency obligations</h4>
                 <p>
-                  Disclose AI use to the people affected — for example, telling candidates when AI
+                  Disclose AI use to the people affected, for example telling candidates when AI
                   is part of the process.
                 </p>
               </div>
@@ -194,7 +194,7 @@ export default function Home() {
             <span className="eyebrow"><span className="ln" />Who it&apos;s for</span>
             <h2>Built for mid-market recruitment firms &amp; professional services</h2>
             <p>
-              You&apos;re using AI across sourcing, screening and client work — often with one
+              You&apos;re using AI across sourcing, screening and client work, often with one
               person holding compliance together. Nora gives that person a system instead of a
               spreadsheet, and works as a plug-in where you already are.
             </p>
@@ -204,7 +204,7 @@ export default function Home() {
             {[
               { title: 'Recruitment agencies', sub: 'ATS and AI sourcing tools sit in the high-risk bracket' },
               { title: 'Professional services', sub: 'Using AI across hiring, operations and client delivery' },
-              { title: 'The compliance team of one', sub: 'One person, every obligation — finally in one place' },
+              { title: 'The compliance team of one', sub: 'One person, every obligation, finally in one place' },
             ].map((item) => (
               <div className="row" key={item.title}>
                 <span className="ic">
@@ -233,7 +233,7 @@ export default function Home() {
             {[
               { n: '01', title: 'Reduce outsourced compliance spend', body: 'One platform in place of scattered legal retainers and ad-hoc consultant hours.' },
               { n: '02', title: 'One source of truth', body: 'Every obligation, deadline and piece of evidence for the EU AI Act in a single place.' },
-              { n: '03', title: 'Continuous compliance evidence', body: 'Stay regulator-ready at all times — not just scrambling in the run-up to an audit.' },
+              { n: '03', title: 'Continuous compliance evidence', body: 'Stay regulator-ready at all times, not just scrambling in the run-up to an audit.' },
               { n: '04', title: '3× faster than manual', body: 'Spend less time navigating compliance and more time doing what you do best.' },
             ].map((b) => (
               <div className="benefit" key={b.n}>
@@ -266,7 +266,7 @@ export default function Home() {
                 Book a demo <span className="arr">→</span>
               </Link>
               <div className="email-line">
-                or email <a href="mailto:hello@noracomply.eu">hello@noracomply.eu</a>
+                or email <a href="mailto:hello@noracomply.com">hello@noracomply.com</a>
               </div>
             </div>
           </div>

@@ -10,7 +10,7 @@ export default function AlertsPage() {
     <>
       <div className="page-eyebrow">Stay current</div>
       <div className="page-title">Alerts &amp; updates</div>
-      <div className="page-lede">Tool and use-case changes, plus regulatory updates, in one place — so a new use case never appears silently again.</div>
+      <div className="page-lede">Tool and use-case changes, plus regulatory updates, in one place, so a new use case never appears silently again.</div>
 
       {!alertDismissed && (
         <div className={`alert-strip ${alert.sev === 'urgent' ? 'urgent' : ''}`} style={{ marginBottom: 16 }}>

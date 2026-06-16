@@ -32,7 +32,7 @@ export default function DashboardPage() {
         <div className="lede-wrap">
           <div className="page-eyebrow">Your compliance, at a glance</div>
           <div className="page-title">Good morning. Here&apos;s where you stand.</div>
-          <div className="page-lede">One place to see what you must have in place, the risk status of your AI tools, and the evidence to prove it. Ask Nora anything — answers come with citations.</div>
+          <div className="page-lede">One place to see what you must have in place, the risk status of your AI tools, and the evidence to prove it. Ask Nora anything: answers come with citations.</div>
         </div>
         <button className="btn btn-primary" onClick={() => setRegisterOpen(true)}><IconPlus /> Register AI system</button>
       </div>

@@ -47,14 +47,14 @@ export async function POST(req: NextRequest) {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const [{ error: notifyErr }, { error: confirmErr }] = await Promise.all([
       resend.emails.send({
-        from: 'Nora Comply <hello@noracomply.eu>',
+        from: 'Nora Comply <hello@noracomply.com>',
         to: NOTIFY_EMAIL,
         replyTo: email.trim(),
         subject: `New demo request — ${name.trim()} at ${company.trim()}`,
         html: buildNotifyHtml({ name: name.trim(), email: email.trim(), company: company.trim(), role, size, tools, message }),
       }),
       resend.emails.send({
-        from: 'Nora Comply <hello@noracomply.eu>',
+        from: 'Nora Comply <hello@noracomply.com>',
         to: email.trim(),
         subject: 'We received your demo request',
         html: buildConfirmHtml({ name: name.trim() }),
@@ -135,11 +135,11 @@ function buildConfirmHtml(data: { name: string }): string {
       </p>
       <p style="margin:0 0 24px;font-size:15px;line-height:1.6;">
         Questions in the meantime? Reply to this email or reach us at
-        <a href="mailto:hello@noracomply.eu" style="color:#2F5FD0;font-weight:600;">hello@noracomply.eu</a>.
+        <a href="mailto:hello@noracomply.com" style="color:#2F5FD0;font-weight:600;">hello@noracomply.com</a>.
       </p>
       <p style="margin:0;font-size:14px;color:#4A5B7A;">The Nora Comply team</p>
       <p style="margin:24px 0 0;font-size:12px;color:#7E92BE;border-top:1px solid #D1DCF5;padding-top:16px;">
-        You're receiving this because you submitted a demo request at noracomply.eu.
+        You're receiving this because you submitted a demo request at noracomply.com.
       </p>
     </div>
   </div>
