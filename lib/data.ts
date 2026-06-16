@@ -6,8 +6,8 @@ export const CHECKLIST: ChecklistItem[] = [
   { id: 'c1', t: 'Follow the instructions', recurring: false, done: true,
     plain: "Use the system the way the provider says to use it.",
     basis: "Article 26(1) — use in line with the provider's instructions." },
-  { id: 'c2', t: 'Have a real person overseeing it', recurring: false, done: false,
-    plain: "That person needs to actually know what they're doing and have the authority to act — to review the output and overrule it where needed.",
+  { id: 'c2', t: 'Have a competent person overseeing it', recurring: false, done: false,
+    plain: "That employee needs to have completed AI literacy training and have the authority to act — to review the output and overrule it where needed.",
     basis: "Article 26(2) — assign human oversight to competent, empowered people." },
   { id: 'c3', t: 'Keep your data clean', recurring: false, done: false,
     plain: "If you control what data goes into the system, make sure it's relevant and representative for what you're using it for.",
@@ -36,14 +36,14 @@ export const CHECKLIST: ChecklistItem[] = [
 ]
 
 export const ANNEX3: RegisterCategory[] = [
-  'Biometrics (non-banned)',
+  'Non-banned biometrics',
   'Critical infrastructure',
-  'Education & vocational training',
-  'Employment, worker management & access to self-employment',
-  'Access to essential public & private services',
+  'Education and vocational training',
+  'Employment, workers management and access to self-employment',
+  'Access and enjoyment of essential public and private services',
   'Law enforcement',
-  'Migration, asylum & border control',
-  'Administration of justice & democratic processes',
+  'Migration, asylum, and border control management',
+  'Administration of justice and democratic processes',
 ]
 
 export const REGISTER_CATEGORIES: RegisterCategory[] = ['Minimal risk', 'Limited risk — transparency', ...ANNEX3]
@@ -77,7 +77,7 @@ export const TOOLS: Tool[] = [
         id: 'uc-bh-1',
         name: 'Candidate–role match scoring',
         rag: 'red',
-        what: 'Scores and ranks candidates against a role, directly influencing who gets shortlisted.',
+        what: 'Usable once the Nora Comply compliance evidencing has been set up and checklist items ticked. Scores and ranks candidates against a role, directly influencing who gets shortlisted.',
         basis: 'Annex III high-risk — Employment, worker management & access to self-employment.',
         obligations: ['c1', 'c2', 'c3', 'c4', 'c5', 'c8', 'c9', 'c10'],
       },

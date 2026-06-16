@@ -16,8 +16,8 @@ export default function ToolsPage() {
       <div className="page-head">
         <div className="lede-wrap">
           <div className="page-eyebrow">AI Tool Register</div>
-          <div className="page-title">AI tools and risk</div>
-          <div className="page-lede">Every AI tool you run, with a traffic-light risk assessment. Nora Comply will never automatically block your tools.</div>
+          <div className="page-title">AI Tools and Risk</div>
+          <div className="page-lede">Every AI tool you run, with a traffic light risk assessment. Nora Comply will never automatically block your tools.</div>
         </div>
         <button className="btn btn-primary" onClick={() => setRegisterOpen(true)}><IconPlus /> Register AI system</button>
       </div>

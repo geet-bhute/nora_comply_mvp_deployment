@@ -25,9 +25,10 @@ export default function UseCaseBlock({ uc }: { uc: UseCase }) {
         <span className="uc-name">{uc.name}</span>
         {ragChip(uc.rag)}
       </div>
+      <div className="uc-ob-h" style={{ marginBottom: 4 }}>Plain English Verdict</div>
       <div className="uc-what">{uc.what}</div>
       <div className="uc-basis">{uc.basis}</div>
-      <div className="uc-ob-h">Checklist items this use triggers</div>
+      <div className="uc-ob-h">Guardrails to green-light</div>
       <div className="uc-obs">
         {uc.obligations.map(id => {
           const num = checklist.findIndex(o => o.id === id) + 1

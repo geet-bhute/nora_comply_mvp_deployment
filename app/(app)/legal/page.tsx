@@ -81,9 +81,9 @@ export default function LegalPage() {
 
   return (
     <>
-      <div className="page-eyebrow">Three tiers, one front door</div>
+      <div className="page-eyebrow">Compliance support</div>
       <div className="page-title">Expert &amp; legal</div>
-      <div className="page-lede">You never have to know which tier you need — the product routes you. Most questions resolve instantly with citations; the rest reach a human with the full context already attached.</div>
+      <div className="page-lede">Most questions resolve instantly with citations from the law and your own records. Complex matters reach a specialist with full context already attached.</div>
 
       <div className="tiers">
         <div className="card tier t1">
@@ -128,12 +128,6 @@ export default function LegalPage() {
         ))}
       </div>
 
-      <div className="section-head">
-        <h2>How the flywheel works</h2>
-      </div>
-      <div className="card" style={{ padding: '18px 20px', fontSize: 13.5, color: 'var(--muted)' }}>
-        Resolved answers (with the firm&apos;s sign-off) are generalised and folded back into the knowledge base — so the same question is answered instantly, with citations, next time. Your legal spend per question falls as the corpus compounds.
-      </div>
     </>
   )
 }

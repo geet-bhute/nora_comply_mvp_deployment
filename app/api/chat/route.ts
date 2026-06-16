@@ -1,64 +1,52 @@
-import { streamText } from "ai";
-import { openai } from "@ai-sdk/openai";
-import OpenAI from "openai";
-import { KNOWLEDGE_BASE } from "@/lib/knowledge-base";
-import { rankChunksBySimilarity, buildSystemPrompt } from "@/lib/rag-utils";
+import OpenAI from 'openai'
+import { rankChunksBySimilarity, buildSystemPrompt } from '@/lib/rag-utils'
 
-// Embeddings are computed once on cold start and cached for the process lifetime.
-// Would move to pgvector in production — this is fine for a prototype.
-let embeddedChunksCache: Array<{
-  id: string;
-  source: string;
-  title: string;
-  sourceUrl: string;
-  content: string;
-  embedding: number[];
-}> | null = null;
+const groqClient = new OpenAI({
+  baseURL: 'https://api.groq.com/openai/v1',
+  apiKey: process.env.GROQ_API_KEY,
+})
 
-async function getEmbeddedChunks(openaiClient: OpenAI) {
-  if (embeddedChunksCache) return embeddedChunksCache;
+const embeddingClient = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
 
-  const texts = KNOWLEDGE_BASE.map((chunk) => `${chunk.title}. ${chunk.content}`);
-
-  const response = await openaiClient.embeddings.create({
-    model: "text-embedding-3-small",
-    input: texts,
-  });
-
-  embeddedChunksCache = KNOWLEDGE_BASE.map((chunk, index) => ({
-    id: chunk.id,
-    source: chunk.source,
-    title: chunk.title,
-    sourceUrl: chunk.sourceUrl,
-    content: chunk.content,
-    embedding: response.data[index].embedding,
-  }));
-
-  return embeddedChunksCache;
-}
+// Pre-computed embeddings loaded once at cold start — no embedding API call for the KB.
+// Regenerate with: npx tsx scripts/precompute-embeddings.mjs
+import precomputed from '@/lib/knowledge-base-embeddings.json'
+const EMBEDDED_CHUNKS = precomputed as Array<{
+  id: string; source: string; title: string; sourceUrl: string; content: string; embedding: number[]
+}>
 
 export async function POST(request: Request) {
-  const { messages } = await request.json();
-  const latestMessage = messages[messages.length - 1].content as string;
+  const { messages } = await request.json()
+  const latestMessage = messages[messages.length - 1].content as string
 
-  const openaiClient = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
-  const queryEmbeddingResponse = await openaiClient.embeddings.create({
-    model: "text-embedding-3-small",
+  // Only 1 embedding API call per query (the KB is pre-computed)
+  const qRes = await embeddingClient.embeddings.create({
+    model: 'text-embedding-3-small',
     input: latestMessage,
-  });
-  const queryEmbedding = queryEmbeddingResponse.data[0].embedding;
+  })
+  const queryEmbedding = qRes.data[0].embedding
 
-  const embeddedChunks = await getEmbeddedChunks(openaiClient);
-  const relevantChunks = rankChunksBySimilarity(queryEmbedding, embeddedChunks, 4);
-  const systemPrompt = buildSystemPrompt(relevantChunks);
+  const relevantChunks = rankChunksBySimilarity(queryEmbedding, EMBEDDED_CHUNKS, 4)
+  const systemPrompt = buildSystemPrompt(relevantChunks)
 
-  // gpt-4o over mini — legal reasoning needs the larger model, the cost difference is worth it
-  const result = streamText({
-    model: openai("gpt-4o"),
-    system: systemPrompt,
-    messages,
-  });
+  const stream = await groqClient.chat.completions.create({
+    model: 'llama-3.3-70b-versatile',
+    messages: [{ role: 'system', content: systemPrompt }, ...messages],
+    stream: true,
+  })
 
-  return result.toTextStreamResponse();
+  const readable = new ReadableStream({
+    async start(controller) {
+      try {
+        for await (const chunk of stream) {
+          const text = chunk.choices[0]?.delta?.content ?? ''
+          if (text) controller.enqueue(new TextEncoder().encode(text))
+        }
+      } finally {
+        controller.close()
+      }
+    },
+  })
+
+  return new Response(readable, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } })
 }

@@ -1,5 +1,6 @@
 'use client'
 
+import './app.css'
 import { AppProvider } from '@/lib/store'
 import Sidebar from '@/components/Sidebar'
 import Topbar from '@/components/Topbar'
