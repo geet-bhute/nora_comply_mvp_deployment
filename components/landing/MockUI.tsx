@@ -16,11 +16,6 @@ export function MockRoadmap({ tilt }: { tilt?: boolean }) {
           <a><span className="ic" />Evidence</a>
           <a><span className="ic" />Monitoring</a>
         </nav>
-        <div className="mk-side-foot">
-          <div className="lab">Regulator-ready</div>
-          <div className="mk-bar"><i /></div>
-          <div className="pct"><b>82%</b><span>+6 this week</span></div>
-        </div>
       </aside>
       <div className="mk-main">
         <div className="mk-top">
@@ -117,7 +112,7 @@ export function MockMonitoring() {
         <div className="mk-event">
           <span className="ev-ic"><Logo /></span>
           <span className="ev-tx">
-            <b>Bullhorn — &ldquo;Match&nbsp;%&rdquo; scoring added</b>
+            <b>Bullhorn: &ldquo;Match&nbsp;%&rdquo; scoring added</b>
             <span>New candidate-ranking prompt appeared</span>
           </span>
           <span className="ev-meta">
@@ -128,7 +123,7 @@ export function MockMonitoring() {
         <div className="mk-event">
           <span className="ev-ic"><Logo /></span>
           <span className="ev-tx">
-            <b>Microsoft Copilot — agent actions</b>
+            <b>Microsoft Copilot: agent actions</b>
             <span>Can now draft &amp; send on your behalf</span>
           </span>
           <span className="ev-meta">
@@ -139,7 +134,7 @@ export function MockMonitoring() {
         <div className="mk-event">
           <span className="ev-ic"><Logo /></span>
           <span className="ev-tx">
-            <b>M365 — CV summary export</b>
+            <b>M365: CV summary export</b>
             <span>Reviewed · no new obligations</span>
           </span>
           <span className="ev-meta">

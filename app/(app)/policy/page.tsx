@@ -30,7 +30,7 @@ export default function PolicyPage() {
 
         <h3>3. Tools &amp; use cases in scope <span className="auto">live from register</span></h3>
         <p>
-          {tools.map(t => `${t.name} — ${toolRag(t).toUpperCase()}`).join(' · ')}. Each tool&apos;s use cases, risk ratings and triggered checklist items are maintained in the AI tool register and reflected here.
+          {tools.map(t => `${t.name}: ${toolRag(t).toUpperCase()}`).join(' · ')}. Each tool&apos;s use cases, risk ratings and triggered checklist items are maintained in the AI tool register and reflected here.
         </p>
 
         <h3>4. Sign-off</h3>

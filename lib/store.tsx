@@ -12,6 +12,8 @@ interface AppContextType {
   toggleChecklistItem: (id: string) => void
   pendingHighlight: string | null
   setPendingHighlight: (id: string | null) => void
+  pendingGroupHighlight: { toolId: string; ucId: string } | null
+  setPendingGroupHighlight: (g: { toolId: string; ucId: string } | null) => void
 
   // tools
   tools: Tool[]
@@ -65,6 +67,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [openToolId, setOpenToolId] = useState<string | null>(null)
   const [registerOpen, setRegisterOpen] = useState(false)
   const [pendingHighlight, setPendingHighlight] = useState<string | null>(null)
+  const [pendingGroupHighlight, setPendingGroupHighlight] = useState<{ toolId: string; ucId: string } | null>(null)
   const [toastState, setToastState] = useState<ToastState | null>(null)
   const toastTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const matterSeqRef = useRef(2)
@@ -101,6 +104,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   return (
     <AppContext.Provider value={{
       checklist, toggleChecklistItem, pendingHighlight, setPendingHighlight,
+      pendingGroupHighlight, setPendingGroupHighlight,
       tools, addTool,
       alert: ALERT, alertDismissed, dismissAlert,
       evidence,

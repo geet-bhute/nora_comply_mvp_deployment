@@ -5,15 +5,14 @@ import { useApp } from '@/lib/store'
 import { IconChev, IconTick } from './icons'
 import type { ChecklistItem } from '@/lib/types'
 
-export default function ChecklistRow({ item, num, applies }: { item: ChecklistItem; num: number; applies: string[] }) {
-  const { toggleChecklistItem, showToast, pendingHighlight, setPendingHighlight } = useApp()
+export default function ChecklistRow({ item, num, applies, toolId, ucId, domId }: { item: ChecklistItem; num: number; applies: string[]; toolId?: string; ucId?: string; domId?: string }) {
+  const { toggleChecklistItem, showToast, pendingGroupHighlight } = useApp()
   const [open, setOpen] = useState(false)
   const [flash, setFlash] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (pendingHighlight !== item.id) return
-    setPendingHighlight(null)
+    if (!pendingGroupHighlight || pendingGroupHighlight.toolId !== toolId || pendingGroupHighlight.ucId !== ucId) return
     setOpen(true)
     setFlash(true)
     const t = setTimeout(() => setFlash(false), 1600)
@@ -22,7 +21,7 @@ export default function ChecklistRow({ item, num, applies }: { item: ChecklistIt
     }, 70)
     return () => { clearTimeout(t); clearTimeout(scrollT) }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pendingHighlight])
+  }, [pendingGroupHighlight])
 
   const handleToggle = (e: React.MouseEvent) => {
     e.stopPropagation()
@@ -31,7 +30,7 @@ export default function ChecklistRow({ item, num, applies }: { item: ChecklistIt
   }
 
   return (
-    <div ref={ref} className={`obl ${item.done ? 'is-done' : ''} ${open ? 'open' : ''} ${flash ? 'flash' : ''}`} id={`obl-${item.id}`}>
+    <div ref={ref} className={`obl ${item.done ? 'is-done' : ''} ${open ? 'open' : ''} ${flash ? 'flash' : ''}`} id={domId ?? `obl-${item.id}`}>
       <div className="obl-head">
         <div
           className={`check ${item.done ? 'done' : ''}`}
@@ -60,7 +59,7 @@ export default function ChecklistRow({ item, num, applies }: { item: ChecklistIt
             <p>{item.plain}</p>
           </div>
           {item.recurring && item.done && (
-            <div className="obl-note">This is a recurring duty — it re-opens when it&apos;s next due. Your readiness score reflects what&apos;s current, not a one-time tick.</div>
+            <div className="obl-note">This is a recurring duty; it re-opens when it&apos;s next due. Your readiness score reflects what&apos;s current, not a one-time tick.</div>
           )}
           <div className="field">
             <div className="fl">Legal basis</div>

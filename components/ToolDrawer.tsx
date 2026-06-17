@@ -49,7 +49,7 @@ export default function ToolDrawer() {
                 <div className="change-note">Warning: {tool.change}</div>
               )}
 
-              {tool.useCases.map(uc => <UseCaseBlock key={uc.id} uc={uc} />)}
+              {tool.useCases.map(uc => <UseCaseBlock key={uc.id} uc={uc} toolId={tool.id} showApplyGuardrails />)}
 
               <button
                 className="btn btn-ghost"

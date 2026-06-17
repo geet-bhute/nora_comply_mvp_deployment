@@ -222,6 +222,28 @@ export default function Home() {
         </div>
       </section>
 
+      {/* TOOLS RISK */}
+      <section className="section tint" id="tools-risk">
+        <div className="wrap">
+          <div className="section-head center">
+            <span className="eyebrow"><span className="ln" />Already in your stack<span className="ln" /></span>
+            <h2>Manage the risk of your current tools</h2>
+          </div>
+          <div className="tool-logos">
+            {[
+              { name: 'Bullhorn', src: '/logos/bullhorn.webp' },
+              { name: 'Microsoft Copilot', src: '/logos/copilot.avif' },
+              { name: 'Claude', src: '/logos/claude.png' },
+              { name: 'ChatGPT', src: '/logos/chatgpt.png' },
+            ].map((t) => (
+              <div className="tool-logo-card" key={t.name}>
+                <img src={t.src} alt={t.name} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* BENEFITS */}
       <section className="section tint">
         <div className="wrap">
@@ -266,7 +288,8 @@ export default function Home() {
                 Book a demo <span className="arr">→</span>
               </Link>
               <div className="email-line">
-                or email <a href="mailto:hello@noracomply.com">hello@noracomply.com</a>
+                or email <a href="mailto:emily@noracomply.com">emily@noracomply.com</a> or{' '}
+                <a href="mailto:kathryn@noracomply.com">kathryn@noracomply.com</a>
               </div>
             </div>
           </div>

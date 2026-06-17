@@ -9,12 +9,12 @@ function ragChip(r: string) {
   return <span className={`rag ${r}`}><span className="d" />{lab[r] ?? r}</span>
 }
 
-export default function UseCaseBlock({ uc }: { uc: UseCase }) {
-  const { checklist, setPendingHighlight, setOpenToolId } = useApp()
+export default function UseCaseBlock({ uc, toolId, showApplyGuardrails }: { uc: UseCase; toolId: string; showApplyGuardrails?: boolean }) {
+  const { checklist, setPendingGroupHighlight, setOpenToolId } = useApp()
   const router = useRouter()
 
-  const goChecklist = (id: string) => {
-    setPendingHighlight(id)
+  const goChecklist = () => {
+    setPendingGroupHighlight({ toolId, ucId: uc.id })
     setOpenToolId(null)
     router.push('/checklist')
   }
@@ -35,12 +35,17 @@ export default function UseCaseBlock({ uc }: { uc: UseCase }) {
           const item = checklist.find(o => o.id === id)
           if (!item) return null
           return (
-            <button key={id} className="ob-link" onClick={() => goChecklist(id)}>
+            <button key={id} className="ob-link" onClick={goChecklist}>
               <span className="n">{num}</span>{item.t}<span className="go">›</span>
             </button>
           )
         })}
       </div>
+      {showApplyGuardrails && (
+        <button className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: 12 }} onClick={goChecklist}>
+          Apply guardrails
+        </button>
+      )}
     </div>
   )
 }

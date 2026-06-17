@@ -92,8 +92,12 @@ export function DemoForm() {
         </p>
         <p>
           In the meantime, anything urgent? Email us at{' '}
-          <a href="mailto:hello@noracomply.com" style={{ color: 'var(--teal)', fontWeight: 600 }}>
-            hello@noracomply.com
+          <a href="mailto:emily@noracomply.com" style={{ color: 'var(--teal)', fontWeight: 600 }}>
+            emily@noracomply.com
+          </a>{' '}
+          or{' '}
+          <a href="mailto:kathryn@noracomply.com" style={{ color: 'var(--teal)', fontWeight: 600 }}>
+            kathryn@noracomply.com
           </a>
           .
         </p>
@@ -201,7 +205,8 @@ export function DemoForm() {
       {status === 'error' && (
         <p className="form-error-msg">
           Something went wrong. Please try again or email us at{' '}
-          <a href="mailto:hello@noracomply.com">hello@noracomply.com</a>.
+          <a href="mailto:emily@noracomply.com">emily@noracomply.com</a> or{' '}
+          <a href="mailto:kathryn@noracomply.com">kathryn@noracomply.com</a>.
         </p>
       )}
 

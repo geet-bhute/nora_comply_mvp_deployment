@@ -10,7 +10,7 @@ export function Footer() {
               <span className="mark"><img src="/logo.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', borderRadius: 8 }} /></span>Nora Comply
             </Link>
             <p className="blurb">
-              The single source of truth for EU AI Act compliance — built for mid-market
+              The single source of truth for EU AI Act compliance, built for mid-market
               recruitment firms and professional services.
             </p>
           </div>
@@ -25,7 +25,8 @@ export function Footer() {
               <h5>Company</h5>
               <Link href="/demo">Book a demo</Link>
               <Link href="/sign-in">Sign in</Link>
-              <a href="mailto:hello@noracomply.com">Contact</a>
+              <a href="mailto:emily@noracomply.com">emily@noracomply.com</a>
+              <a href="mailto:kathryn@noracomply.com">kathryn@noracomply.com</a>
             </div>
           </div>
         </div>

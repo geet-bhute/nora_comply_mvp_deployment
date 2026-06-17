@@ -60,7 +60,10 @@ export default function SignInPage() {
             ))}
           </ul>
         </div>
-        <p style={S.footnote}>Regulation (EU) 2024/1689 · Deployer compliance workspace</p>
+        <div style={S.footnote}>
+          <p style={{ margin: 0 }}>© 2026 Nora Comply · noracomply.com</p>
+          <p style={{ margin: '2px 0 0' }}>Made for the EU AI Act</p>
+        </div>
       </div>
 
       {/* Right panel */}
@@ -138,7 +141,7 @@ export default function SignInPage() {
 const PERKS = [
   'Map every AI tool to its EU AI Act obligations',
   'Track compliance progress with a structured checklist',
-  'Ask Nora — your AI Act expert assistant',
+  'Ask Nora, your AI Act expert assistant',
   'Evidence library for audit-ready documentation',
   'Alerts for deadlines and regulatory updates',
   'Escalate to legal counsel when it matters',
