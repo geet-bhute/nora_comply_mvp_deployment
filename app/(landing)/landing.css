@@ -53,6 +53,7 @@
 
 .landing-root * { box-sizing: border-box; }
 .landing-root a { color: inherit; text-decoration: none; }
+.landing-root a:focus-visible, .landing-root button:focus-visible, .landing-root input:focus-visible, .landing-root textarea:focus-visible, .landing-root select:focus-visible { outline: 2px solid var(--teal-bright); outline-offset: 2px; border-radius: 4px; }
 .landing-root .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
 
 /* ---------- type helpers ---------- */
@@ -62,13 +63,14 @@
 .landing-root .serif-em { font-style: italic; font-weight: 500; color: var(--teal); }
 
 /* ---------- buttons ---------- */
-.landing-root .btn { font-family: var(--sans); font-weight: 600; font-size: 15px; border-radius: 10px; padding: 12px 20px; border: 1px solid transparent; cursor: pointer; white-space: nowrap; display: inline-flex; align-items: center; gap: 9px; transition: transform .12s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease; }
+.landing-root .btn { font-family: var(--sans); font-weight: 600; font-size: 15px; border-radius: 10px; padding: 12px 20px; border: 1px solid transparent; cursor: pointer; white-space: nowrap; display: inline-flex; align-items: center; gap: 9px; transition: transform .12s cubic-bezier(.4,0,.2,1), background .15s cubic-bezier(.4,0,.2,1), border-color .15s cubic-bezier(.4,0,.2,1), box-shadow .15s cubic-bezier(.4,0,.2,1); }
 .landing-root .btn:active { transform: translateY(1px); }
 .landing-root .btn:disabled { opacity: .65; cursor: not-allowed; }
-.landing-root .btn .arr { font-size: 16px; line-height: 1; transition: transform .15s ease; }
+.landing-root .btn:focus-visible { outline: 2px solid var(--teal-bright); outline-offset: 2px; }
+.landing-root .btn .arr { font-size: 16px; line-height: 1; transition: transform .15s cubic-bezier(.4,0,.2,1); }
 .landing-root .btn:not(:disabled):hover .arr { transform: translateX(3px); }
 .landing-root .btn-primary { background: var(--teal); color: #fff; box-shadow: 0 1px 0 rgba(255,255,255,.15) inset; }
-.landing-root .btn-primary:not(:disabled):hover { background: var(--teal-press); }
+.landing-root .btn-primary:not(:disabled):hover { background: var(--teal-press); box-shadow: 0 1px 0 rgba(255,255,255,.15) inset, 0 6px 16px -8px rgba(47,95,208,.45); }
 .landing-root .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line-2); }
 .landing-root .btn-ghost:hover { background: var(--paper-2); }
 .landing-root .btn-ghost.on-dark { color: #E4EEFF; border-color: rgba(255,255,255,.26); }
@@ -77,15 +79,16 @@
 
 /* ---------- brand wordmark ---------- */
 .landing-root .brand { display: inline-flex; align-items: center; gap: 11px; font-family: var(--sans); font-weight: 800; font-size: 19px; letter-spacing: -.02em; color: var(--ink); }
-.landing-root .brand .mark { width: 32px; height: 32px; border-radius: 9px; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 1px rgba(111,212,220,.3), 0 4px 10px rgba(0,0,0,.25); background: linear-gradient(150deg, #00c6bd, #16244A); }
+.landing-root .brand .mark { width: 32px; height: 32px; border-radius: 9px; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 1px rgba(79,140,255,.3), 0 4px 10px rgba(0,0,0,.25); background: linear-gradient(150deg, var(--teal-bright), var(--green-deep)); }
 .landing-root .brand.on-dark { color: #fbfdfc; }
-.landing-root .brand.on-dark .mark { background: linear-gradient(150deg, #00c6bd, #16244A); }
+.landing-root .brand.on-dark .mark { background: linear-gradient(150deg, var(--teal-bright), var(--green-deep)); }
 
 /* ---------- site header / nav ---------- */
-.landing-root .site-head { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.82); backdrop-filter: saturate(140%) blur(12px); border-bottom: 1px solid var(--line); transition: background .3s ease, border-color .3s ease; }
-.landing-root .site-head.on-dark { background: rgba(16,28,64,.80); border-bottom-color: var(--green-line); }
+.landing-root .site-head { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.86); backdrop-filter: saturate(140%) blur(12px); border-bottom: 1px solid var(--line); box-shadow: 0 1px 0 rgba(15,30,80,.03); transition: background .3s cubic-bezier(.4,0,.2,1), border-color .3s cubic-bezier(.4,0,.2,1), box-shadow .3s cubic-bezier(.4,0,.2,1); }
+.landing-root .site-head.on-dark { background: var(--green-deep); border-bottom-color: rgba(255,255,255,.07); box-shadow: 0 1px 0 rgba(255,255,255,.04); }
 .landing-root .nav { display: flex; align-items: center; justify-content: space-between; height: 70px; }
 .landing-root .nav-links { display: flex; align-items: center; gap: 30px; font-size: 14.5px; font-weight: 500; color: var(--ink-soft); }
+.landing-root .nav-links a { transition: color .15s cubic-bezier(.4,0,.2,1); }
 .landing-root .nav-links a:hover { color: var(--ink); }
 .landing-root .site-head.on-dark .nav-links { color: #A8BEDF; }
 .landing-root .site-head.on-dark .nav-links a:hover { color: #fff; }
