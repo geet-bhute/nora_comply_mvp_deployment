@@ -1,13 +1,13 @@
 'use client'
 
 import { useRef, useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { useApp } from '@/lib/store'
-import type { ChatMessage, Matter } from '@/lib/types'
+import type { ChatMessage } from '@/lib/types'
+
+const EU_AI_ACT_URL = 'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689'
 
 export default function AskPage() {
-  const { chatLog, setChatLog, addMatter, showToast, setOpenMatterId, matterSeqRef } = useApp()
-  const router = useRouter()
+  const { chatLog, setChatLog } = useApp()
   const inputRef = useRef<HTMLInputElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
 
@@ -19,10 +19,8 @@ export default function AskPage() {
 
   const [pending, setPending] = useState(false)
 
-  const buildEscapeHtml = (q: string) => {
-    const escaped = q.replace(/'/g, "\\'").replace(/"/g, '&quot;')
-    return `<div class="esc-box"><b>Want a lawyer to weigh in?</b> I'll package your question, my analysis, and the relevant records into a context bundle so external counsel starts fully briefed.<br><button class="btn btn-violet" onclick="window.__escalate('${escaped}')">Escalate to external counsel →</button></div>`
-  }
+  const buildEscapeHtml = () =>
+    `<div class="esc-box"><b>Want the full legal detail?</b> Read the official EU AI Act text on EUR-Lex.<br><a class="btn btn-violet" href="${EU_AI_ACT_URL}" target="_blank" rel="noopener noreferrer">View the EU AI Act →</a></div>`
 
   // Turn the model's plain-text/markdown-ish reply into safe HTML.
   const formatAiText = (text: string) => {
@@ -85,51 +83,18 @@ export default function AskPage() {
         setChatLog([...withUser, aiMsg])
       }
 
-      aiMsg = { role: 'ai', html: `<span class="conf law">● Grounded in EU AI Act</span>${formatAiText(full)}${buildEscapeHtml(q)}` }
+      aiMsg = { role: 'ai', html: `<span class="conf law">● Grounded in EU AI Act</span>${formatAiText(full)}${buildEscapeHtml()}` }
       setChatLog([...withUser, aiMsg])
     } catch {
       aiMsg = {
         role: 'ai',
-        html: `<span class="conf legal">● Needs legal review</span><p>I couldn't reach the compliance assistant just now. You can try again, or escalate this question to external counsel.</p>${buildEscapeHtml(q)}`,
+        html: `<span class="conf legal">● Needs legal review</span><p>I couldn't reach the compliance assistant just now. Please try again.</p>${buildEscapeHtml()}`,
       }
       setChatLog([...withUser, aiMsg])
     } finally {
       setPending(false)
     }
   }
-
-  // Expose escalate to window for the injected onclick button
-  useEffect(() => {
-    ;(window as Window & { __escalate?: (q: string) => void }).__escalate = (q: string) => {
-      const newMatter: Matter = {
-        id: 'm' + (matterSeqRef.current++),
-        title: q.length > 60 ? q.slice(0, 57) + '...' : q,
-        firm: 'External counsel',
-        tier: 3,
-        status: 'New · awaiting firm',
-        price: 'Fixed fee on acceptance',
-        sla: '3 business days',
-        opened: 'Today',
-        q,
-        bundle: [
-          "Your question + Ask Nora's attempted answer",
-          'Relevant tool risk records',
-          'Linked items from your checklist',
-          'Attached evidence',
-        ],
-        thread: [{
-          who: 'sys',
-          name: 'NC',
-          txt: "Matter created from Ask Nora. Context bundle attached automatically: external counsel will confirm scope and a fixed fee before any work begins.",
-          meta: 'System · just now',
-        }],
-      }
-      addMatter(newMatter)
-      showToast('Matter created — firm briefed', 'ok')
-      setOpenMatterId(newMatter.id)
-      router.push('/legal')
-    }
-  }, [addMatter, showToast, setOpenMatterId, router, matterSeqRef])
 
   const CHIPS = [
     "Do I need a DPIA for Bullhorn's match feature?",
@@ -144,7 +109,7 @@ export default function AskPage() {
     <>
       <div className="page-eyebrow">Grounded answers · cite or be silent</div>
       <div className="page-title">Ask Nora</div>
-      <div className="page-lede">Answers are retrieved from the Act, official guidance, and <b>your own records</b>, never guessed. Every claim carries a citation; anything needing legal judgment hands off to your firm in one click.</div>
+      <div className="page-lede">Answers are retrieved from the Act, official guidance, and <b>your own records</b>, never guessed. Every claim carries a citation, with a link to the official text when you want the full legal detail.</div>
 
       <div className="chips">
         {CHIPS.map(c => (
@@ -159,7 +124,7 @@ export default function AskPage() {
               <div className="who">N</div>
               <div className="bubble">
                 <span className="conf law">● Grounded in law</span>
-                <p>Hi. I answer from the EU AI Act, official guidance, and your own tool register and evidence. If I can&apos;t ground an answer, I&apos;ll say so and offer to brief your law firm instead of guessing.</p>
+                <p>Hi. I answer from the EU AI Act, official guidance, and your own tool register and evidence. If I can&apos;t ground an answer, I&apos;ll say so and point you to the official text instead of guessing.</p>
                 <p>Try one of the suggestions above, or ask anything.</p>
               </div>
             </div>

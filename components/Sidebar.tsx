@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { useApp } from '@/lib/store'
 import {
   IconDashboard, IconYourTools, IconRoadmap, IconTools, IconEvidence,
-  IconPolicy, IconAlerts, IconAsk, IconLegal,
+  IconPolicy, IconAlerts, IconAsk,
 } from './icons'
 
 const NAV_COMPLIANCE = [
@@ -21,7 +21,6 @@ const NAV_COMPLIANCE = [
 
 const NAV_INTELLIGENCE = [
   { href: '/ask', label: 'Ask Nora', icon: <IconAsk /> },
-  { href: '/legal', label: 'Expert & legal', icon: <IconLegal />, badge: 'legal' },
 ]
 
 function getSession() {
@@ -37,7 +36,7 @@ function getSession() {
 export default function Sidebar() {
   const pathname = usePathname()
   const router = useRouter()
-  const { matters, alertDismissed } = useApp()
+  const { alertDismissed } = useApp()
   const [user, setUser] = useState<{ name: string; initials: string; company: string } | null>(null)
 
   useEffect(() => {
@@ -45,7 +44,6 @@ export default function Sidebar() {
   }, [])
 
   const alertBadge = alertDismissed ? 0 : 1
-  const legalBadge = matters.filter(m => m.status !== 'Resolved').length
 
   function signOut() {
     document.cookie = 'nora_session=; path=/; max-age=0'
@@ -75,16 +73,12 @@ export default function Sidebar() {
       })}
 
       <div className="nav-label">Intelligence</div>
-      {NAV_INTELLIGENCE.map(item => {
-        const count = item.badge === 'legal' ? legalBadge : 0
-        return (
-          <Link key={item.href} href={item.href} className={`nav-item ${pathname === item.href ? 'active' : ''}`}>
-            {item.icon}
-            {item.label}
-            {count > 0 && <span className="nav-badge violet">{count}</span>}
-          </Link>
-        )
-      })}
+      {NAV_INTELLIGENCE.map(item => (
+        <Link key={item.href} href={item.href} className={`nav-item ${pathname === item.href ? 'active' : ''}`}>
+          {item.icon}
+          {item.label}
+        </Link>
+      ))}
 
       <div className="side-foot">
         <div className="avatar">{user?.initials ?? 'CO'}</div>
