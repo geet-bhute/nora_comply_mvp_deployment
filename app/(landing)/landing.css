@@ -26,12 +26,12 @@
   --green-deep-2:#1B2E5A;
   --green-line:#243666;
 
-  --risk-high:#1c4f86;
-  --risk-high-tint:#e2ebf4;
-  --risk-lim:#2F5FD0;
-  --risk-lim-tint:#E4ECFB;
-  --risk-low:#1f7d57;
-  --risk-low-tint:#e0f0e8;
+  --risk-high:#B33A2E;
+  --risk-high-tint:#F7E3E0;
+  --risk-lim:#A9760F;
+  --risk-lim-tint:#F7ECD6;
+  --risk-low:#1F8A5B;
+  --risk-low-tint:#E5F2EB;
 
   --serif: var(--font-spectral), Georgia, 'Times New Roman', serif;
   --sans: var(--font-hanken), system-ui, -apple-system, sans-serif;
@@ -260,8 +260,8 @@
 .landing-root .mk-rr-top { display: flex; align-items: center; justify-content: space-between; }
 .landing-root .mk-rr-top h3 { font-family: var(--serif); font-size: 16px; margin: 0; }
 .landing-root .mk-rr-top .src { font-size: 11px; color: var(--ink-faint); font-weight: 600; }
-.landing-root .mk-rr-verdict { display: flex; align-items: center; gap: 16px; background: var(--risk-high-tint); border: 1px solid #c6d8ec; border-radius: 12px; padding: 16px; }
-.landing-root .mk-rr-score { width: 58px; height: 58px; border-radius: 50%; flex: 0 0 auto; background: conic-gradient(var(--risk-high) 0 78%, #cdddee 78% 100%); display: flex; align-items: center; justify-content: center; }
+.landing-root .mk-rr-verdict { display: flex; align-items: center; gap: 16px; background: var(--risk-high-tint); border: 1px solid #ecd3cf; border-radius: 12px; padding: 16px; }
+.landing-root .mk-rr-score { width: 58px; height: 58px; border-radius: 50%; flex: 0 0 auto; background: conic-gradient(var(--risk-high) 0 78%, #f0d7d2 78% 100%); display: flex; align-items: center; justify-content: center; }
 .landing-root .mk-rr-score b { width: 44px; height: 44px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 15px; color: var(--risk-high); font-weight: 600; }
 .landing-root .mk-rr-verdict .lab { font-size: 11px; color: var(--ink-soft); font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
 .landing-root .mk-rr-verdict .v { font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--risk-high); margin-top: 2px; }
