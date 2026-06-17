@@ -13,10 +13,6 @@ export default function DashboardPage() {
   const { checklist, tools, alert, alertDismissed, setOpenToolId, setRegisterOpen } = useApp()
   const router = useRouter()
 
-  const total = checklist.length
-  const done = checklist.filter(o => o.done).length
-  const pct = Math.round((done / total) * 100)
-
   const rc = { green: 0, amber: 0, red: 0 }
   tools.forEach(t => { rc[toolRag(t)]++ })
 
@@ -51,14 +47,7 @@ export default function DashboardPage() {
         </div>
       )}
 
-      <div className="grid cols-3">
-        <div className="card stat">
-          <div className="k">Readiness</div>
-          <div className="v">{pct}<small>%</small></div>
-          <div className="sub">{done} of {total} checklist items complete</div>
-          <div className="bar"><i style={{ width: `${pct}%` }} /></div>
-        </div>
-
+      <div className="grid cols-2">
         <div className="card stat">
           <div className="k">AI tools in use</div>
           <div className="v">{tools.length}</div>
