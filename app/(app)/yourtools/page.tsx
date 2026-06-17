@@ -43,7 +43,7 @@ export default function YourToolsPage() {
                 </div>
               </div>
               <div className="uc-wrap">
-                {t.useCases.map(uc => <UseCaseBlock key={uc.id} uc={uc} />)}
+                {t.useCases.map(uc => <UseCaseBlock key={uc.id} uc={uc} toolId={t.id} />)}
               </div>
             </div>
           )
