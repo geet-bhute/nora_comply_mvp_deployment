@@ -195,6 +195,13 @@
 .landing-root .who-card .row span { font-size: 13px; color: #7E92BE; }
 @media (max-width:900px){ .landing-root .who { grid-template-columns: 1fr; gap: 34px; } }
 
+/* ---- tools risk (logo grid) ---- */
+.landing-root .tool-logos { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; max-width: 880px; margin: 0 auto; }
+.landing-root .tool-logo-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; height: 96px; display: flex; align-items: center; justify-content: center; padding: 16px 20px; box-shadow: var(--shadow-sm); transition: transform .16s cubic-bezier(.4,0,.2,1), box-shadow .16s cubic-bezier(.4,0,.2,1); }
+.landing-root .tool-logo-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.landing-root .tool-logo-card img { max-width: 100%; max-height: 44px; object-fit: contain; }
+@media (max-width:760px){ .landing-root .tool-logos { grid-template-columns: repeat(2,1fr); } }
+
 /* ---- benefits ---- */
 .landing-root .benefits-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 22px; }
 .landing-root .benefit { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 28px; box-shadow: var(--shadow-sm); transition: transform .16s ease, box-shadow .16s ease; }
