@@ -14,7 +14,7 @@ const fraunces = Fraunces({
 })
 
 export const metadata: Metadata = {
-  title: 'Nora Comply — AI Act Cockpit',
+  title: 'Nora Comply | AI Act Cockpit',
   description: 'EU AI Act compliance platform for deployers',
 }
 

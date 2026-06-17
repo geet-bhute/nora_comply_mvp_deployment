@@ -3,7 +3,7 @@ import { Footer } from '@/components/landing/Footer';
 import { DemoForm } from '@/components/landing/DemoForm';
 
 export const metadata = {
-  title: 'Book a demo — Nora Comply',
+  title: 'Book a demo | Nora Comply',
   description: 'See your AI systems mapped to the EU AI Act in 30 minutes.',
 };
 

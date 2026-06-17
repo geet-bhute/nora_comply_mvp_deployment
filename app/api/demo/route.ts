@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
         from: 'Nora Comply <hello@noracomply.com>',
         to: NOTIFY_EMAILS,
         replyTo: email.trim(),
-        subject: `New demo request — ${name.trim()} at ${company.trim()}`,
+        subject: `New demo request from ${name.trim()} at ${company.trim()}`,
         html: buildNotifyHtml({ name: name.trim(), email: email.trim(), company: company.trim(), role, size, tools, message }),
       }),
       resend.emails.send({

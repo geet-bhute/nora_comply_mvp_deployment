@@ -60,7 +60,7 @@ export default function ChecklistRow({ item, num, applies }: { item: ChecklistIt
             <p>{item.plain}</p>
           </div>
           {item.recurring && item.done && (
-            <div className="obl-note">This is a recurring duty — it re-opens when it&apos;s next due. Your readiness score reflects what&apos;s current, not a one-time tick.</div>
+            <div className="obl-note">This is a recurring duty; it re-opens when it&apos;s next due. Your readiness score reflects what&apos;s current, not a one-time tick.</div>
           )}
           <div className="field">
             <div className="fl">Legal basis</div>

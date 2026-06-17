@@ -16,7 +16,7 @@ export default function EvidencePage() {
         <button className="btn btn-primary" onClick={() => showToast('Audit pack generated', 'ok')}>
           <IconFile /> Generate audit pack
         </button>
-        <button className="btn btn-ghost" onClick={() => showToast('Evidence upload — prototype')}>
+        <button className="btn btn-ghost" onClick={() => showToast('Evidence upload (prototype)')}>
           Attach evidence
         </button>
       </div>

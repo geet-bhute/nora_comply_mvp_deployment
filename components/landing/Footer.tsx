@@ -10,7 +10,7 @@ export function Footer() {
               <span className="mark"><img src="/logo.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', borderRadius: 8 }} /></span>Nora Comply
             </Link>
             <p className="blurb">
-              The single source of truth for EU AI Act compliance — built for mid-market
+              The single source of truth for EU AI Act compliance, built for mid-market
               recruitment firms and professional services.
             </p>
           </div>

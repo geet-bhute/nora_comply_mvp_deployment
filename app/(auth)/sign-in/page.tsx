@@ -138,7 +138,7 @@ export default function SignInPage() {
 const PERKS = [
   'Map every AI tool to its EU AI Act obligations',
   'Track compliance progress with a structured checklist',
-  'Ask Nora — your AI Act expert assistant',
+  'Ask Nora, your AI Act expert assistant',
   'Evidence library for audit-ready documentation',
   'Alerts for deadlines and regulatory updates',
   'Escalate to legal counsel when it matters',
