@@ -163,7 +163,8 @@
 .landing-root .act-text h2 { font-size: 36px; line-height: 1.12; margin: 16px 0 18px; }
 .landing-root .act-text p { font-size: 16.5px; line-height: 1.64; color: var(--ink-soft); margin: 0 0 26px; max-width: 460px; }
 .landing-root .risk-tiers { display: flex; flex-direction: column; gap: 14px; }
-.landing-root .tier { display: flex; gap: 16px; align-items: flex-start; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; box-shadow: var(--shadow-sm); position: relative; overflow: hidden; }
+.landing-root .tier { display: flex; gap: 16px; align-items: flex-start; background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; box-shadow: var(--shadow-sm); transition: transform .16s cubic-bezier(.4,0,.2,1), box-shadow .16s cubic-bezier(.4,0,.2,1); position: relative; overflow: hidden; }
+.landing-root .tier:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
 .landing-root .tier::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; }
 .landing-root .tier.t-low::before { background: var(--risk-low); }
 .landing-root .tier.t-lim::before { background: var(--risk-lim); }

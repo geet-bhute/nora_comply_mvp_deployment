@@ -59,7 +59,7 @@ export default function AskPage() {
     setChatLog(withUser)
     setPending(true)
 
-    let aiMsg: ChatMessage = { role: 'ai', html: '<span class="conf law">● Grounded in EU AI Act</span><p>Thinking…</p>' }
+    let aiMsg: ChatMessage = { role: 'ai', html: '<span class="conf law">● Grounded in EU AI Act</span><div class="typing"><i></i><i></i><i></i></div>' }
     setChatLog([...withUser, aiMsg])
 
     try {
