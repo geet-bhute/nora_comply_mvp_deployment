@@ -346,3 +346,52 @@
   .landing-root .form-row { grid-template-columns: 1fr; }
   .landing-root .demo-hero h1 { font-size: 34px; }
 }
+
+/* ============================================================
+   MOBILE — small-screen fit & overflow fixes (no visual redesign,
+   just reflow so nothing clips or scrolls horizontally on phones)
+   ============================================================ */
+.landing-root { overflow-x: hidden; }
+
+@media (max-width: 640px) {
+  .landing-root .wrap { padding: 0 18px; }
+
+  .landing-root .nav { height: 64px; }
+  .landing-root .brand { font-size: 16px; gap: 8px; }
+  .landing-root .brand .mark { width: 26px; height: 26px; }
+  .landing-root .nav-cta { gap: 8px; }
+  .landing-root .nav-cta .btn { padding: 9px 14px; font-size: 13.5px; }
+
+  .landing-root .hero-grid { padding: 36px 0 40px; }
+  .landing-root .hero h1 { font-size: 30px; line-height: 1.14; margin: 16px 0 16px; }
+  .landing-root .hero .lead { font-size: 15.5px; max-width: none; }
+  .landing-root .hero .tagline { font-size: 15.5px; }
+  .landing-root .hero .actions { flex-direction: column; align-items: stretch; gap: 12px; }
+  .landing-root .hero .actions .btn { width: 100%; justify-content: center; }
+  .landing-root .hero .stats { flex-wrap: wrap; gap: 18px 28px; }
+
+  .landing-root .hero-mock { margin-top: 18px; }
+  .landing-root .hero-mock .float-chip { position: static; margin: 0 0 10px; }
+  .landing-root .hero-mock .float-chip.a, .landing-root .hero-mock .float-chip.b { top: auto; right: auto; bottom: auto; left: auto; }
+  .landing-root .mock.tilt { transform: none; }
+  .landing-root .mock { grid-template-columns: 1fr; min-height: 0; }
+  .landing-root .mk-side { border-right: none; border-bottom: 1px solid var(--line); }
+
+  .landing-root .section { padding: 56px 0; }
+  .landing-root .section-head { margin-bottom: 32px; }
+  .landing-root .section-head h2 { font-size: 28px; }
+  .landing-root .snap-text h3 { font-size: 22px; }
+  .landing-root .act-text h2 { font-size: 27px; }
+  .landing-root .who h2 { font-size: 26px; }
+  .landing-root .who-card { padding: 22px; }
+
+  .landing-root .cta-band { padding: 28px; }
+  .landing-root .cta-band h2 { font-size: 26px; }
+
+  .landing-root .demo-hero { padding: 40px 0 90px; }
+  .landing-root .demo-hero h1 { font-size: 27px; }
+  .landing-root .form-panel, .landing-root .side-panel { padding: 24px; }
+  .landing-root .email-card { flex-wrap: wrap; }
+
+  .landing-root .foot-cols { gap: 32px; }
+}

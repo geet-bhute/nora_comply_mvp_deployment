@@ -61,7 +61,10 @@ export default function DemoPage() {
               </span>
               <span>
                 <span className="lbl">Email us</span>
-                <a href="mailto:hello@noracomply.com">hello@noracomply.com</a>
+                <a href="mailto:emily@noracomply.com">emily@noracomply.com</a>
+                <a href="mailto:kathryn@noracomply.com" style={{ marginTop: 4, display: 'block' }}>
+                  kathryn@noracomply.com
+                </a>
               </span>
             </div>
             <ul className="expect">

@@ -266,7 +266,8 @@ export default function Home() {
                 Book a demo <span className="arr">→</span>
               </Link>
               <div className="email-line">
-                or email <a href="mailto:hello@noracomply.com">hello@noracomply.com</a>
+                or email <a href="mailto:emily@noracomply.com">emily@noracomply.com</a> or{' '}
+                <a href="mailto:kathryn@noracomply.com">kathryn@noracomply.com</a>
               </div>
             </div>
           </div>
