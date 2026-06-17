@@ -2,8 +2,13 @@
 
 import { useState } from 'react'
 import { useApp } from '@/lib/store'
+import { toolRag } from '@/lib/data'
 import { IconChev, IconPlus } from '@/components/icons'
 import UseCaseBlock from '@/components/UseCaseBlock'
+
+function ragLabel(r: string) {
+  return { green: 'Green · Minimal risk', amber: 'Amber · Limited risk', red: 'Red · High risk' }[r] ?? r
+}
 
 export default function YourToolsPage() {
   const { tools, setRegisterOpen } = useApp()
@@ -23,6 +28,7 @@ export default function YourToolsPage() {
       <div className="card">
         {tools.map(t => {
           const open = openId === t.id
+          const rag = toolRag(t)
           return (
             <div key={t.id} className={`yt ${open ? 'open' : ''}`}>
               <div className="yt-head" onClick={() => setOpenId(open ? null : t.id)}>
@@ -32,6 +38,7 @@ export default function YourToolsPage() {
                   <div className="yt-count">{t.vendor} · {t.useCases.length} use case{t.useCases.length > 1 ? 's' : ''}</div>
                 </div>
                 <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 14 }}>
+                  <span className={`rag ${rag}`}><span className="d" />{ragLabel(rag)}</span>
                   <span className="yt-chev"><IconChev /></span>
                 </div>
               </div>

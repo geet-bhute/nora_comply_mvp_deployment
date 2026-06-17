@@ -16,11 +16,6 @@ export function MockRoadmap({ tilt }: { tilt?: boolean }) {
           <a><span className="ic" />Evidence</a>
           <a><span className="ic" />Monitoring</a>
         </nav>
-        <div className="mk-side-foot">
-          <div className="lab">Regulator-ready</div>
-          <div className="mk-bar"><i /></div>
-          <div className="pct"><b>82%</b><span>+6 this week</span></div>
-        </div>
       </aside>
       <div className="mk-main">
         <div className="mk-top">

@@ -56,7 +56,7 @@ export default function Sidebar() {
         <div className="brand-mark"><img src="/logo.png" alt="Nora Comply" /></div>
         <div>
           <div className="brand-name">Nora Comply</div>
-          <div className="brand-sub">AI Act cockpit</div>
+          <div className="brand-sub">Evidencing AI compliance</div>
         </div>
       </div>
 
