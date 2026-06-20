@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useApp } from '@/lib/store'
-import { REGISTER_CATEGORIES, ragForCategory, basisForCategory, OBS_FOR_RAG } from '@/lib/data'
+import { REGISTER_CATEGORIES, ragForCategory, basisForCategory, classKeyForCategory, OBS_FOR_RAG } from '@/lib/data'
 import type { RegisterCategory, Tool, UseCase } from '@/lib/types'
 
 interface DraftUseCase {
@@ -54,6 +54,7 @@ export default function RegisterDrawer() {
           id: `uc-${slug}-${i}`,
           name: u.name.trim(),
           rag,
+          classKey: classKeyForCategory(u.category),
           what: u.what.trim() || 'Use case registered for risk tracking.',
           basis: basisForCategory(u.category),
           obligations: OBS_FOR_RAG[rag],

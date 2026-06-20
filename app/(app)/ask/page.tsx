@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState } from 'react'
 import { useApp } from '@/lib/store'
+import { TOOLS } from '@/lib/data'
 import type { ChatMessage } from '@/lib/types'
 
 const EU_AI_ACT_URL = 'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689'
@@ -22,7 +23,6 @@ export default function AskPage() {
   const buildEscapeHtml = () =>
     `<div class="esc-box"><b>Want the full legal detail?</b> Read the official EU AI Act text on EUR-Lex.<br><a class="btn btn-violet" href="${EU_AI_ACT_URL}" target="_blank" rel="noopener noreferrer">View the EU AI Act →</a></div>`
 
-  // Turn the model's plain-text/markdown-ish reply into safe HTML.
   const formatAiText = (text: string) => {
     const escaped = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
     const linked = escaped.replace(/(https?:\/\/[^\s)]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>')
@@ -96,20 +96,24 @@ export default function AskPage() {
     }
   }
 
+  // Chips: generic, slot first registered system name where natural (§6.6)
+  const firstSystemName = TOOLS[0]?.name ?? 'your AI tool'
   const CHIPS = [
-    "Do I need a DPIA for Bullhorn's match feature?",
+    `Do I need a DPIA for ${firstSystemName}'s match feature?`,
     'What does human oversight actually mean?',
     "When's the deadline now?",
-    "Are we liable for vendor bias?",
+    'Are we liable for vendor bias?',
   ]
 
   const messages = chatLog ?? []
 
   return (
     <>
-      <div className="page-eyebrow">Grounded answers · cite or be silent</div>
       <div className="page-title">Ask Nora</div>
-      <div className="page-lede">Answers are retrieved from the Act, official guidance, and <b>your own records</b>, never guessed. Every claim carries a citation, with a link to the official text when you want the full legal detail.</div>
+      <div className="page-lede">
+        Answers are retrieved from the Act, official guidance, and <b>your own records</b>, never guessed.
+        Every claim carries a citation, with a link to the official text when you want the full legal detail.
+      </div>
 
       <div className="chips">
         {CHIPS.map(c => (
@@ -124,7 +128,10 @@ export default function AskPage() {
               <div className="who">N</div>
               <div className="bubble">
                 <span className="conf law">● Grounded in law</span>
-                <p>Hi. I answer from the EU AI Act, official guidance, and your own tool register and evidence. If I can&apos;t ground an answer, I&apos;ll say so and point you to the official text instead of guessing.</p>
+                <p>
+                  Hi. I answer from the EU AI Act, official guidance, and your own tool register and evidence.
+                  If I can&apos;t ground an answer, I&apos;ll say so and point you to the official text instead of guessing.
+                </p>
                 <p>Try one of the suggestions above, or ask anything.</p>
               </div>
             </div>

@@ -5,22 +5,29 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useApp } from '@/lib/store'
 import {
-  IconDashboard, IconYourTools, IconRoadmap, IconTools, IconEvidence,
+  IconDashboard, IconYourTools, IconRoadmap, IconEvidence,
   IconPolicy, IconAlerts, IconAsk,
 } from './icons'
 
-const NAV_COMPLIANCE = [
-  { href: '/dashboard', label: 'Dashboard', icon: <IconDashboard /> },
-  { href: '/yourtools', label: 'Your tools', icon: <IconYourTools /> },
-  { href: '/checklist', label: 'Checklist', icon: <IconRoadmap /> },
-  { href: '/tools', label: 'AI Tools and Risk', icon: <IconTools /> },
-  { href: '/evidence', label: 'Evidence', icon: <IconEvidence /> },
-  { href: '/policy', label: 'Policy', icon: <IconPolicy /> },
-  { href: '/alerts', label: 'Alerts & updates', icon: <IconAlerts />, badge: 'alert' },
-]
+// Icon for Responsible AI Use (reuses the shield/scale shape)
+function IconResponsibleAI() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    </svg>
+  )
+}
 
-const NAV_INTELLIGENCE = [
-  { href: '/ask', label: 'Ask Nora', icon: <IconAsk /> },
+// Exact 8-tab order from spec §2
+const NAV = [
+  { href: '/dashboard',      label: 'Overview',             icon: <IconDashboard /> },
+  { href: '/yourtools',      label: 'Your Systems',         icon: <IconYourTools /> },
+  { href: '/checklist',      label: 'Obligation Monitor',   icon: <IconRoadmap /> },
+  { href: '/policy',         label: 'Internal Policy',      icon: <IconPolicy /> },
+  { href: '/evidence',       label: 'Evidence Packs',       icon: <IconEvidence /> },
+  { href: '/responsible-ai', label: 'Responsible AI Use',   icon: <IconResponsibleAI /> },
+  { href: '/ask',            label: 'Ask Nora',             icon: <IconAsk /> },
+  { href: '/alerts',         label: 'Alerts & Updates',     icon: <IconAlerts />, badge: 'alert' },
 ]
 
 function getSession() {
@@ -56,12 +63,11 @@ export default function Sidebar() {
         <div className="brand-mark"><img src="/logo.png" alt="Nora Comply" /></div>
         <div>
           <div className="brand-name">Nora Comply</div>
-          <div className="brand-sub">Evidencing AI compliance</div>
+          <div className="brand-sub">EU AI Act compliance</div>
         </div>
       </div>
 
-      <div className="nav-label">Compliance</div>
-      {NAV_COMPLIANCE.map(item => {
+      {NAV.map(item => {
         const count = item.badge === 'alert' ? alertBadge : 0
         return (
           <Link key={item.href} href={item.href} className={`nav-item ${pathname === item.href ? 'active' : ''}`}>
@@ -72,19 +78,11 @@ export default function Sidebar() {
         )
       })}
 
-      <div className="nav-label">Intelligence</div>
-      {NAV_INTELLIGENCE.map(item => (
-        <Link key={item.href} href={item.href} className={`nav-item ${pathname === item.href ? 'active' : ''}`}>
-          {item.icon}
-          {item.label}
-        </Link>
-      ))}
-
       <div className="side-foot">
         <div className="avatar">{user?.initials ?? 'CO'}</div>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontSize: 13, color: '#fff', fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-            {user?.name ?? 'Compliance owner'}
+            {user?.name ?? 'User'}
           </div>
           <div style={{ fontSize: 11, color: '#7E92BE', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
             {user?.company ?? 'Northgate Recruitment'}

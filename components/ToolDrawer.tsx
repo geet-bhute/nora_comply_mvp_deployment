@@ -7,7 +7,7 @@ import { toolRag } from '@/lib/data'
 import UseCaseBlock from './UseCaseBlock'
 
 function ragLabel(r: string) {
-  return { green: 'Green · Minimal risk', amber: 'Amber · Limited risk', red: 'Red · High risk' }[r] ?? r
+  return { green: 'Minimal risk', amber: 'Limited risk', red: 'High risk' }[r] ?? r
 }
 
 export default function ToolDrawer() {
@@ -32,7 +32,13 @@ export default function ToolDrawer() {
         {tool && (
           <>
             <div className="drawer-top">
-              <div className="tool-ic">{tool.name[0]}</div>
+              <div className="tool-ic" style={{ overflow: 'hidden', padding: 0 }}>
+                {tool.logo ? (
+                  <img src={tool.logo} alt={tool.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                ) : (
+                  <span>{tool.name[0]}</span>
+                )}
+              </div>
               <div>
                 <div style={{ fontWeight: 700, fontSize: 16 }}>{tool.name}</div>
                 <div style={{ fontSize: 12.5, color: 'var(--muted)' }}>{tool.vendor}</div>
@@ -46,7 +52,7 @@ export default function ToolDrawer() {
               </div>
 
               {tool.change && (
-                <div className="change-note">Warning: {tool.change}</div>
+                <div className="change-note">⚠ {tool.change}</div>
               )}
 
               {tool.useCases.map(uc => <UseCaseBlock key={uc.id} uc={uc} toolId={tool.id} showApplyGuardrails />)}
