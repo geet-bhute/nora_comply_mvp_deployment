@@ -1,5 +1,7 @@
 # Nora Comply — EU AI Act Compliance Platform (MVP)
 
+**Repository:** [github.com/pranjal614/nora_comply_mvp](https://github.com/pranjal614/nora_comply_mvp)
+
 Nora Comply is a multi-tenant SaaS web application that helps companies operating in the EU understand and fulfil their obligations under the **EU AI Act (Regulation (EU) 2024/1689)**. It is built for organisations that deploy AI systems — known as "deployers" under the Act — and need a structured, legally accurate way to register their AI tools, classify risk, track Article 26 obligations, and generate evidence for boards and regulators.
 
 ---
