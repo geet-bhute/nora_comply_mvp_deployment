@@ -1,7 +1,7 @@
 'use client'
 
 import React, { createContext, useContext, useState, useCallback, useRef } from 'react'
-import type { ChecklistItem, EvidenceItem, Matter, ChatMessage, Tool, Alert } from './types'
+import type { ChecklistItem, EvidenceItem, Matter, ChatMessage, Tool, Alert, UseCase } from './types'
 import { CHECKLIST, TOOLS, EVIDENCE_DATA, ALERT, INITIAL_MATTERS } from './data'
 
 interface ToastState { msg: string; kind?: string }
@@ -18,6 +18,7 @@ interface AppContextType {
   // tools
   tools: Tool[]
   addTool: (t: Tool) => void
+  addUseCase: (toolId: string, uc: UseCase) => void
 
   // alert
   alert: Alert
@@ -80,6 +81,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     setTools(prev => [...prev, t])
   }, [])
 
+  const addUseCase = useCallback((toolId: string, uc: UseCase) => {
+    setTools(prev => prev.map(t => t.id === toolId ? { ...t, useCases: [...t.useCases, uc] } : t))
+  }, [])
+
   const dismissAlert = useCallback(() => setAlertDismissed(true), [])
 
   const addMatter = useCallback((m: Matter) => {
@@ -105,7 +110,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     <AppContext.Provider value={{
       checklist, toggleChecklistItem, pendingHighlight, setPendingHighlight,
       pendingGroupHighlight, setPendingGroupHighlight,
-      tools, addTool,
+      tools, addTool, addUseCase,
       alert: ALERT, alertDismissed, dismissAlert,
       evidence,
       matters, addMatter, resolveMatter, openMatterId, setOpenMatterId,

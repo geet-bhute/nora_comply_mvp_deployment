@@ -16,12 +16,15 @@ export interface UseCase {
   what: string
   basis: string
   obligations: string[]
+  classKey?: string
+  obligationsFulfilled?: number
 }
 
 export interface Tool {
   id: string
   name: string
   vendor: string
+  logo?: string
   change?: string
   useCases: UseCase[]
 }

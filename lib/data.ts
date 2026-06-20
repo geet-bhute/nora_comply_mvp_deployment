@@ -1,40 +1,141 @@
 import type { ChecklistItem, Tool, EvidenceItem, Alert, Matter, RagStatus, RegisterCategory } from './types'
 
-export const COMPANY = { name: 'Northgate Recruitment', sub: 'EU AI Act workspace' }
+// ── Layer B: Tenant record (demo seed — Northgate Recruitment) ──────────────
+export const TENANT = {
+  name: 'Northgate Recruitment',
+  sector: 'Recruitment',
+  workspaceLabel: 'EU AI Act workspace',
+}
 
+// Alias kept for any existing component still referencing COMPANY
+export const COMPANY = { name: TENANT.name, sub: TENANT.workspaceLabel }
+
+// ── Layer A: Fixed — Article 26 Obligation Checklist (§6.1) ────────────────
+// 10 items identical for every high-risk use case, every tenant.
+// Render verbatim; do not paraphrase.
 export const CHECKLIST: ChecklistItem[] = [
-  { id: 'c1', t: "Follow the vendor's instructions of use", recurring: false, done: true,
-    plain: "Use the system the way the vendor says to use it.",
-    basis: "Article 26(1) — use in line with the provider's instructions." },
-  { id: 'c2', t: 'Have an assigned employee overseeing it', recurring: false, done: false,
-    plain: "That person needs to have had the necessary AI literacy training and have the authority to act.",
-    basis: "Article 26(2) — assign human oversight to competent, empowered people." },
-  { id: 'c3', t: 'Keep your data clean', recurring: false, done: false,
-    plain: "If you control what data goes into the system, make sure it's relevant and representative.",
-    basis: "Article 26(4) — deployer duty over input data." },
-  { id: 'c4', t: 'Monitor the system for abnormalities or faults', recurring: true, done: false,
-    plain: "Monitor the system, and if something looks risky or goes wrong, report it to the provider, distributor, and the relevant authority immediately. Pause use if needed.",
-    basis: "Article 26(5) — monitoring and incident reporting (Articles 72 & 79)." },
-  { id: 'c5', t: 'Keep audit logs for at least 6 months', recurring: true, done: false,
-    plain: "Hold onto the system's automatically generated records.",
-    basis: "Article 26(6) — record-keeping." },
-  { id: 'c6', t: 'Tell your team the system is in use', recurring: false, done: true,
-    plain: "Before deploying an AI system in the workplace, inform the employees and their representatives that it's being used.",
-    basis: "Article 26(7) — inform workers and their representatives." },
-  { id: 'c7', t: 'Check the EU database', recurring: false, done: false,
-    plain: "If you're a public body, make sure the system is registered before using it. If it isn't, don't use it and flag it to the provider.",
-    basis: "Article 26(8) — registration check (Articles 49 & 71)." },
-  { id: 'c8', t: 'Data protection impact assessments', recurring: false, done: false,
-    plain: "Use the system's documentation to help you run any required GDPR privacy impact assessments.",
-    basis: "Article 26(9) — DPIA under GDPR Article 35." },
-  { id: 'c9', t: 'Tell clients/candidates/customers when AI is making decisions about them', recurring: false, done: false,
-    plain: "If the system is making or influencing decisions about individuals, those people need to be informed.",
-    basis: "Article 26(11) with Article 50 — transparency to affected people." },
-  { id: 'c10', t: 'Cooperate with regulators', recurring: true, done: false,
-    plain: "If the authorities come enquire about your AI use, cooperate with them.",
-    basis: "Article 26(12) — cooperate with competent authorities." },
+  {
+    id: 'c1',
+    t: "Follow the vendor's instructions for use",
+    recurring: false,
+    done: true,
+    plain: "Obtain the provider's instructions and use the system only for the purpose they state. Repurposing it can make you the provider under Article 25. Keep a copy on file.",
+    basis: 'Article 26(1)',
+  },
+  {
+    id: 'c2',
+    t: 'Have an assigned employee overseeing it',
+    recurring: false,
+    done: false,
+    plain: "Name a person with the competence, training and authority to monitor outputs and to override or stop the system. Record who they are and what they're empowered to do.",
+    basis: 'Article 26(2)',
+  },
+  {
+    id: 'c3',
+    t: 'Keep your input data clean',
+    recurring: false,
+    done: false,
+    plain: "To the extent you control the input data, make sure it's relevant and representative for the system's purpose. Document its source and any known gaps or bias.",
+    basis: 'Article 26(4)',
+  },
+  {
+    id: 'c4',
+    t: 'Monitor how the system performs',
+    recurring: true,
+    done: false,
+    plain: "Watch operation against the provider's instructions. Define what 'off' looks like and who watches for it.",
+    basis: 'Article 26(5)',
+  },
+  {
+    id: 'c5',
+    t: 'Suspend use and report serious incidents',
+    recurring: true,
+    done: false,
+    plain: 'If the system creates a risk to health, safety or fundamental rights, suspend use, inform the provider and the relevant market-surveillance authority without undue delay, and log it.',
+    basis: 'Article 26(5) · Article 73',
+  },
+  {
+    id: 'c6',
+    t: "Keep the system's logs for at least six months",
+    recurring: true,
+    done: false,
+    plain: "Retain the logs the system generates automatically, where they're under your control, for at least six months (longer if other law requires). Confirm logging is on and accessible.",
+    basis: 'Article 26(6)',
+  },
+  {
+    id: 'c7',
+    t: 'Tell your staff before you use it on them',
+    recurring: false,
+    done: true,
+    plain: 'Before deploying a high-risk system in the workplace, inform affected workers and their representatives. Keep a record.',
+    basis: 'Article 26(7)',
+  },
+  {
+    id: 'c8',
+    t: 'Tell people affected by an AI-assisted decision',
+    recurring: false,
+    done: false,
+    plain: 'Where the system makes or assists decisions about people, those individuals must be told a high-risk AI system is being used on them.',
+    basis: 'Article 26(11)',
+  },
+  {
+    id: 'c9',
+    t: 'Do a data protection impact assessment (DPIA)',
+    recurring: false,
+    done: false,
+    plain: "Use the provider's Article 13 documentation to complete or update your DPIA. The AI Act duty builds on your existing GDPR duty — extend it, don't duplicate.",
+    basis: 'Article 26(9) · GDPR Art. 35',
+  },
+  {
+    id: 'c10',
+    t: 'Complete a Fundamental Rights Impact Assessment (FRIA)',
+    recurring: false,
+    done: false,
+    plain: 'Before first use, assess the impact on fundamental rights: who\'s affected, what could go wrong, what safeguards and human oversight are in place, and what you\'ll do if harm occurs.',
+    basis: 'Article 27',
+  },
 ]
 
+// All 10 obligation IDs (every high-risk use case carries all 10)
+export const ALL_OBLIGATION_IDS = CHECKLIST.map(c => c.id)
+
+// ── Layer A: Fixed — Risk-Rationale Library (§6.2) ─────────────────────────
+// Keyed by classKey. Slot {{useCase.name}} / {{system.name}} at render time.
+// HIGH RISK — Annex III
+export const RISK_RATIONALE: Record<string, string> = {
+  'high.biometrics':
+    'This use involves biometrics — remote biometric identification, biometric categorisation inferring sensitive attributes, or emotion recognition — which is high-risk under Annex III, point 1. (Pure verification that you are who you claim to be is excluded.) Because it touches privacy and non-discrimination, the Article 26 obligations and an Article 27 FRIA apply.',
+  'high.critical_infrastructure':
+    'This is a safety component in the management or operation of critical infrastructure (digital infrastructure, road traffic, or the supply of water, gas, heating or electricity) — high-risk under Annex III, point 2, because failure can endanger health and safety at scale. Article 26 obligations and an Article 27 FRIA apply.',
+  'high.education':
+    "This use decides access, admission or assignment to education or training, evaluates learning outcomes, steers learning, or monitors test conduct — high-risk under Annex III, point 3, because it can shape a person's educational and career path. Article 26 obligations and an Article 27 FRIA apply.",
+  'high.employment':
+    'This use sits in recruitment, selection or worker management — targeted job ads, filtering applications, evaluating or scoring candidates, or decisions on promotion, termination, task allocation or performance — high-risk under Annex III, point 4. An automated output can decide who progresses, touching the right to non-discrimination and fair access to employment. High-risk doesn\'t mean banned: the Article 26 obligations and an Article 27 FRIA apply.',
+  'high.essential_services':
+    'This use affects access to essential public or private services — benefit eligibility, creditworthiness (other than fraud detection), emergency-call triage, or health/life insurance risk and pricing — high-risk under Annex III, point 5, because it can determine access to things people depend on. Article 26 obligations and an Article 27 FRIA apply.',
+  'high.law_enforcement':
+    'This is a law-enforcement use — victim-risk or re-offending assessment, polygraphs, evidence-reliability evaluation, or profiling in investigations — high-risk under Annex III, point 6. Article 26 obligations and an Article 27 FRIA apply.',
+  'high.migration_border':
+    'This is a migration, asylum or border-control use — polygraphs, irregular-migration or health-risk assessment, examining visa/asylum/residence applications, or identification (other than verifying travel documents) — high-risk under Annex III, point 7. Article 26 obligations and an Article 27 FRIA apply.',
+  'high.justice_democracy':
+    'This use supports the administration of justice or democratic processes — researching and applying the law to facts, alternative dispute resolution, or influencing elections, referenda or voting behaviour — high-risk under Annex III, point 8. Article 26 obligations and an Article 27 FRIA apply.',
+  'high.borderline_6_3':
+    "We've rated this high-risk to stay safe. It supports a high-risk decision (e.g. summarising or pre-processing information a reviewer then acts on), which usually keeps it in scope under Annex III. It could qualify for the narrow Article 6(3) exemption — for tasks that don't materially influence the outcome, where a human independently reviews the full underlying information. If you can evidence that, ask Nora about re-rating.",
+  // LIMITED RISK — Article 50
+  'limited.chatbot':
+    "Minimal decision-making, but a transparency duty applies: under Article 50, anyone interacting directly with this system must be made aware they're dealing with an AI, at the latest at first interaction (Article 50(5)).",
+  'limited.deepfake_media':
+    'This generates or manipulates image, audio or video that could appear authentic. Under Article 50(4), you must disclose that the content is artificially generated or manipulated (lighter touch for clearly artistic, satirical or fictional work).',
+  'limited.public_text':
+    "This generates text published to inform the public on matters of public interest. Under Article 50(4) you must disclose it's AI-generated, unless a human took editorial responsibility.",
+  'limited.emotion_biometric_categorisation':
+    'Under Article 50(3), people exposed to emotion-recognition or biometric-categorisation systems must be informed it\'s operating, with data handled under GDPR. (Many such systems are also high-risk — both sets of duties can apply.)',
+  // MINIMAL RISK
+  'minimal.general':
+    "This use doesn't evaluate or decide anything about individuals, so it's minimal risk — no specific obligations beyond good practice. Two things to keep in view: Article 4 AI literacy still applies to everyone using it, and if it's ever pointed at decisions about people (scoring, selection, targeted ads), it would re-rate to high-risk.",
+}
+
+// ── Layer A: Annex III category list ────────────────────────────────────────
 export const ANNEX3: RegisterCategory[] = [
   'Non-banned biometrics',
   'Critical infrastructure',
@@ -49,8 +150,8 @@ export const ANNEX3: RegisterCategory[] = [
 export const REGISTER_CATEGORIES: RegisterCategory[] = ['Minimal risk', 'Limited risk — transparency', ...ANNEX3]
 
 export const OBS_FOR_RAG: Record<RagStatus, string[]> = {
-  red: ['c1', 'c2', 'c3', 'c4', 'c5', 'c7', 'c8', 'c9', 'c10'],
-  amber: ['c1', 'c4', 'c9', 'c10'],
+  red: ALL_OBLIGATION_IDS,
+  amber: ['c1', 'c4', 'c8'],
   green: ['c1'],
 }
 
@@ -66,41 +167,103 @@ export function basisForCategory(cat: RegisterCategory): string {
   return `Annex III high-risk — ${cat}.`
 }
 
+export function classKeyForCategory(cat: RegisterCategory): string {
+  const map: Partial<Record<RegisterCategory, string>> = {
+    'Non-banned biometrics': 'high.biometrics',
+    'Critical infrastructure': 'high.critical_infrastructure',
+    'Education and vocational training': 'high.education',
+    'Employment, workers management and access to self-employment': 'high.employment',
+    'Access and enjoyment of essential public and private services': 'high.essential_services',
+    'Law enforcement': 'high.law_enforcement',
+    'Migration, asylum, and border control management': 'high.migration_border',
+    'Administration of justice and democratic processes': 'high.justice_democracy',
+    'Limited risk — transparency': 'limited.chatbot',
+    'Minimal risk': 'minimal.general',
+  }
+  return map[cat] ?? 'minimal.general'
+}
+
+// ── Layer B: Tools / Systems — Demo seed (§8, Northgate Recruitment) ────────
+// Fully replaceable. Swap the tenant record and every screen updates.
 export const TOOLS: Tool[] = [
   {
     id: 'bullhorn',
     name: 'Bullhorn',
+    logo: '/logos/bullhorn.webp',
     vendor: 'Applicant tracking system',
-    change: 'A new candidate-match use case appeared with no notice. We re-rated that use case Green → Red (high risk) on 4 Jun.',
+    change: "A new candidate-match use case appeared in your account. We've re-rated it Green → Red (high risk) and listed the checklist items it now triggers.",
     useCases: [
       {
         id: 'uc-bh-1',
-        name: 'Candidate–role match scoring',
+        name: 'Candidate Role Match Scoring',
         rag: 'red',
-        what: 'Usable once the Nora Comply compliance evidencing has been set up and checklist items ticked. Scores and ranks candidates against a role, directly influencing who gets shortlisted.',
-        basis: 'Annex III high-risk — Employment, worker management & access to self-employment.',
-        obligations: ['c1', 'c2', 'c3', 'c4', 'c5', 'c8', 'c9', 'c10'],
+        classKey: 'high.employment',
+        obligationsFulfilled: 7,
+        what: 'Scores and ranks candidates against a role, directly influencing who gets shortlisted. Automated output can decide who progresses.',
+        basis: 'Annex III high-risk — Employment, workers management and access to self-employment.',
+        obligations: ALL_OBLIGATION_IDS,
       },
       {
         id: 'uc-bh-2',
-        name: 'CV summarisation & admin drafting',
+        name: 'CV Summarisation and Admin Drafting',
+        rag: 'red',
+        classKey: 'high.borderline_6_3',
+        obligationsFulfilled: 4,
+        what: 'Summarises CVs and drafts admin text. Supports a high-risk decision — output is human-reviewed but assists the shortlisting process.',
+        basis: 'Annex III high-risk (borderline) — supports employment decisions.',
+        obligations: ALL_OBLIGATION_IDS,
+      },
+    ],
+  },
+  {
+    id: 'claude',
+    name: 'Claude',
+    logo: '/logos/claude.png',
+    vendor: 'General-purpose AI assistant',
+    useCases: [
+      {
+        id: 'uc-cl-1',
+        name: 'Internal Drafting & Q&A',
         rag: 'green',
-        what: 'Summarises CVs and drafts admin text. No automated decision about a person — output is human-edited.',
+        classKey: 'minimal.general',
+        what: 'Drafts internal documents and answers staff questions. No decisions about people — output is always human-edited.',
         basis: 'Minimal risk — not high-risk or transparency-listed.',
-        obligations: ['c1', 'c2'],
+        obligations: ['c1'],
+      },
+      {
+        id: 'uc-cl-2',
+        name: 'Candidate Assessment Summaries',
+        rag: 'red',
+        classKey: 'high.employment',
+        obligationsFulfilled: 5,
+        what: 'Summarises candidate assessments to support shortlisting decisions. Directly influences who progresses in the recruitment process.',
+        basis: 'Annex III high-risk — Employment, workers management and access to self-employment.',
+        obligations: ALL_OBLIGATION_IDS,
+      },
+      {
+        id: 'uc-cl-3',
+        name: 'Automated Shortlisting & Ranking',
+        rag: 'red',
+        classKey: 'high.employment',
+        obligationsFulfilled: 3,
+        what: 'Automatically shortlists and ranks candidates. Automated output directly determines who progresses to interview.',
+        basis: 'Annex III high-risk — Employment, workers management and access to self-employment.',
+        obligations: ALL_OBLIGATION_IDS,
       },
     ],
   },
   {
     id: 'copilot',
     name: 'Microsoft Copilot',
+    logo: '/logos/copilot.avif',
     vendor: 'General assistant',
     useCases: [
       {
         id: 'uc-cp-1',
-        name: 'Pitch & report drafting',
+        name: 'Office Productivity',
         rag: 'green',
-        what: 'Drafts pitches and reports for staff. No decisions about people; output is always human-edited.',
+        classKey: 'minimal.general',
+        what: 'Assists with office tasks — drafting emails, summarising documents, creating presentations. No decisions about people; output always human-edited.',
         basis: 'Minimal risk — not high-risk or transparency-listed.',
         obligations: ['c1'],
       },
@@ -114,19 +277,39 @@ export function toolRag(tool: Tool): RagStatus {
   return tool.useCases.reduce<RagStatus>((worst, uc) => (RAG_ORDER[uc.rag] > RAG_ORDER[worst] ? uc.rag : worst), 'green')
 }
 
-export const EVIDENCE_DATA: EvidenceItem[] = [
-  { n: 'Internal AI policy (draft)', t: 'Policy · in progress', linked: 'Have a real person overseeing it' },
-  { n: 'AI-literacy training records', t: 'Training record · complete', linked: 'Have a real person overseeing it' },
-  { n: 'Bullhorn DPIA', t: 'DPIA · outstanding', linked: 'Data protection impact assessments' },
-  { n: 'Candidate AI notice', t: 'Policy · live on careers page', linked: 'Tell people when AI is making decisions about them' },
-]
+// Derived counts computed from live tenant data
+export function computeCounts(tools: Tool[]) {
+  const allUseCases = tools.flatMap(t => t.useCases)
+  const highRiskUseCases = allUseCases.filter(uc => uc.rag === 'red')
+  const obligationsTotal = highRiskUseCases.length * 10
+  const obligationsFulfilled = highRiskUseCases.reduce((sum, uc) => sum + (uc.obligationsFulfilled ?? 0), 0)
+  const healthPct = obligationsTotal > 0 ? Math.round((obligationsFulfilled / obligationsTotal) * 100) : 100
+  return {
+    systems: tools.length,
+    useCases: allUseCases.length,
+    highRiskUseCases: highRiskUseCases.length,
+    obligationsTotal,
+    obligationsFulfilled,
+    healthPct,
+  }
+}
 
+// ── Layer B: Tenant alert (demo seed) ────────────────────────────────────────
 export const ALERT: Alert = {
   sev: 'urgent',
   title: 'Bullhorn added a candidate-match feature with no notice',
-  body: "A new match-% scoring use case appeared in your account. We've re-rated that use case Green → Red (high risk) and listed the checklist items it now triggers.",
+  body: "A new use case appeared in your account. We've re-rated it Green → Red (high risk) and listed the checklist items it now triggers.",
 }
 
+// ── Layer B: Evidence ────────────────────────────────────────────────────────
+export const EVIDENCE_DATA: EvidenceItem[] = [
+  { n: 'Internal AI policy (draft)', t: 'Policy · in progress', linked: 'Have an assigned employee overseeing it' },
+  { n: 'AI-literacy training records', t: 'Training record · complete', linked: 'Have an assigned employee overseeing it' },
+  { n: 'Bullhorn DPIA', t: 'DPIA · outstanding', linked: 'Do a data protection impact assessment (DPIA)' },
+  { n: 'Candidate AI notice', t: 'Policy · live on careers page', linked: 'Tell people affected by an AI-assisted decision' },
+]
+
+// ── Layer B: Legal matters ───────────────────────────────────────────────────
 export const INITIAL_MATTERS: Matter[] = [
   {
     id: 'm1',
@@ -145,7 +328,7 @@ export const INITIAL_MATTERS: Matter[] = [
       'Current vendor contract (uploaded)',
     ],
     thread: [
-      { who: 'firm', name: 'LC', txt: "Thanks — the context bundle covers everything we need; no call required. Short answer: yes. At renewal, push for an “AI Feature Change Notice” clause: 30 days' written notice before any feature that processes personal data or influences decisions about individuals is enabled, with an opt-out default. We've drafted the clause and a fallback position.", meta: 'External counsel · privileged' },
+      { who: 'firm', name: 'LC', txt: "Thanks — the context bundle covers everything we need; no call required. Short answer: yes. At renewal, push for an 'AI Feature Change Notice' clause: 30 days' written notice before any feature that processes personal data or influences decisions about individuals is enabled, with an opt-out default. We've drafted the clause and a fallback position.", meta: 'External counsel · privileged' },
       { who: 'firm', name: 'LC', txt: "Attached: draft clause v1 + negotiation note. Once you confirm, we'll mark the matter resolved and the advice will file to your evidence vault against the Bullhorn record.", meta: 'Draft_clause_v1.docx · Negotiation_note.pdf' },
     ],
   },
