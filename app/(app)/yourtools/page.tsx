@@ -126,7 +126,7 @@ export default function YourSystemsPage() {
             )}
 
             {selected.useCases.map(uc => (
-              <UseCaseBlock key={uc.id} uc={uc} toolId={selected.id} showApplyGuardrails />
+              <UseCaseBlock key={uc.id} uc={uc} toolId={selected.id} showApplyGuardrails showObligations={false} />
             ))}
 
             {selected.useCases.length === 0 && !addingUC && (

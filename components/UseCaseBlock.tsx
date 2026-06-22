@@ -10,7 +10,7 @@ function ragChip(r: string) {
   return <span className={`rag ${r}`}><span className="d" />{lab[r] ?? r}</span>
 }
 
-export default function UseCaseBlock({ uc, toolId, showApplyGuardrails }: { uc: UseCase; toolId: string; showApplyGuardrails?: boolean }) {
+export default function UseCaseBlock({ uc, toolId, showApplyGuardrails, showObligations = true }: { uc: UseCase; toolId: string; showApplyGuardrails?: boolean; showObligations?: boolean }) {
   const { checklist, setPendingGroupHighlight, setOpenToolId } = useApp()
   const router = useRouter()
 
@@ -46,7 +46,7 @@ export default function UseCaseBlock({ uc, toolId, showApplyGuardrails }: { uc: 
         </div>
       )}
 
-      {uc.rag === 'red' && (
+      {showObligations && uc.rag === 'red' && (
         <>
           <div className="uc-ob-h">Article 26 obligations</div>
           <div className="uc-obs">
@@ -67,7 +67,7 @@ export default function UseCaseBlock({ uc, toolId, showApplyGuardrails }: { uc: 
         </>
       )}
 
-      {uc.rag !== 'red' && uc.obligations.length > 0 && (
+      {showObligations && uc.rag !== 'red' && uc.obligations.length > 0 && (
         <>
           <div className="uc-ob-h">Obligations</div>
           <div className="uc-obs">
