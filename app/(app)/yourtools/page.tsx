@@ -161,14 +161,17 @@ export default function YourSystemsPage() {
         </div>
       ) : (
         <div className="systems-grid">
-          {tools.map(tool => {
-            const rag = toolRag(tool)
-            return (
-              <button
-                key={tool.id}
-                className="card sys-card"
-                onClick={() => setSelectedId(tool.id)}
-              >
+          {tools.map(tool => (
+            <button
+              key={tool.id}
+              className="card sys-card"
+              onClick={() => setSelectedId(tool.id)}
+            >
+              <div className="sys-card-head">
+                <div className="sys-card-titles">
+                  <div className="sys-name">{tool.name}</div>
+                  <div className="sys-count">Use Cases: {tool.useCases.length}</div>
+                </div>
                 <div className="sys-logo">
                   {tool.logo ? (
                     <img src={tool.logo} alt={tool.name} />
@@ -176,13 +179,12 @@ export default function YourSystemsPage() {
                     <span>{tool.name[0]}</span>
                   )}
                 </div>
-                <div className="sys-name">{tool.name}</div>
-                <div className="sys-vendor">{tool.vendor}</div>
-                <div className="sys-count">{tool.useCases.length} use case{tool.useCases.length !== 1 ? 's' : ''}</div>
-                <RagPill r={rag} />
-              </button>
-            )
-          })}
+              </div>
+              <div className="sys-chips">
+                {tool.useCases.map(uc => <RagPill key={uc.id} r={uc.rag} />)}
+              </div>
+            </button>
+          ))}
         </div>
       )}
     </>
