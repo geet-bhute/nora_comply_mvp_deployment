@@ -34,12 +34,12 @@ export default function Home() {
             </div>
             <div className="stats">
               <div className="stat">
-                <div className="big">3×</div>
-                <div className="lbl">faster than manual compliance</div>
-              </div>
-              <div className="stat">
                 <div className="big">1</div>
                 <div className="lbl">place for every obligation</div>
+              </div>
+              <div className="stat">
+                <div className="big" style={{ fontSize: 22 }}>Faster</div>
+                <div className="lbl">than manual compliance</div>
               </div>
               <div className="stat">
                 <div className="big">24/7</div>
@@ -256,7 +256,7 @@ export default function Home() {
               { n: '01', title: 'Reduce outsourced compliance spend', body: 'One platform in place of scattered legal retainers and ad-hoc consultant hours.' },
               { n: '02', title: 'One source of truth', body: 'Every obligation, deadline and piece of evidence for the EU AI Act in a single place.' },
               { n: '03', title: 'Continuous compliance evidence', body: 'Stay regulator-ready at all times, not just scrambling in the run-up to an audit.' },
-              { n: '04', title: '3× faster than manual', body: 'Spend less time navigating compliance and more time doing what you do best.' },
+              { n: '04', title: 'Faster than manual compliance', body: 'Spend less time navigating compliance and more time doing what you do best.' },
             ].map((b) => (
               <div className="benefit" key={b.n}>
                 <div className="bnum">{b.n}</div>

@@ -80,28 +80,37 @@ export default function ResponsibleAIUsePage() {
       </div>
 
       <div className="grid cols-2" style={{ marginBottom: 30 }}>
-        <div className="card" style={{ padding: '18px 22px' }}>
-          <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 10, color: 'var(--muted)' }}>Providers</div>
-          <p style={{ fontSize: 14, color: '#2C3A52' }}>
-            Build or market the system and carry the build-side load: risk management, data governance,
-            technical documentation, logging design, accuracy/robustness, conformity assessment and CE marking,
-            EU-database registration, quality management, post-market monitoring.
-          </p>
-        </div>
-
-        <div className="card" style={{ padding: '18px 22px', border: '2px solid var(--brand)', background: 'var(--brand-soft)' }}>
-          <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 10, color: 'var(--brand)' }}>
-            Deployers — that&apos;s you
+        <button
+          className="card resp-card-btn"
+          style={{ padding: '18px 22px', textAlign: 'left', width: '100%' }}
+          onClick={() => router.push('/responsible-ai/provider')}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
+            <div style={{ fontWeight: 700, fontSize: 15, color: 'var(--muted)' }}>Providers</div>
+            <span style={{ color: 'var(--faint)' }}>›</span>
           </div>
           <p style={{ fontSize: 14, color: '#2C3A52' }}>
-            Put the system to use. Your duties are operational and live in{' '}
-            <strong>Article 26</strong>: follow instructions, assign human oversight, keep input data clean,
-            monitor, retain logs six months, inform workers and affected individuals, run your DPIA, and
-            complete an Article 27 FRIA where required — plus give a person an explanation of an AI-assisted
-            decision when asked (Article 86). These duties are yours by law and{' '}
+            Build or market the system and carry the build-side load — 9 obligations, from risk management to
+            post-market monitoring.
+          </p>
+          <div style={{ fontSize: 12.5, color: 'var(--brand)', fontWeight: 600, marginTop: 10 }}>See breakdown →</div>
+        </button>
+
+        <button
+          className="card resp-card-btn"
+          style={{ padding: '18px 22px', border: '2px solid var(--brand)', background: 'var(--brand-soft)', textAlign: 'left', width: '100%' }}
+          onClick={() => router.push('/responsible-ai/deployer')}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
+            <div style={{ fontWeight: 700, fontSize: 15, color: 'var(--brand)' }}>Deployers — that&apos;s you</div>
+            <span style={{ color: 'var(--brand)' }}>›</span>
+          </div>
+          <p style={{ fontSize: 14, color: '#2C3A52' }}>
+            Put the system to use — your duties live in <strong>Article 26</strong> and{' '}
             <strong>can&apos;t be contracted away to the vendor.</strong>
           </p>
-        </div>
+          <div style={{ fontSize: 12.5, color: 'var(--brand)', fontWeight: 600, marginTop: 10 }}>See breakdown →</div>
+        </button>
       </div>
 
       {/* Timeline */}

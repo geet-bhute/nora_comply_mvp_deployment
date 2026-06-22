@@ -99,6 +99,28 @@ export const CHECKLIST: ChecklistItem[] = [
 // All 10 obligation IDs (every high-risk use case carries all 10)
 export const ALL_OBLIGATION_IDS = CHECKLIST.map(c => c.id)
 
+// ── Provider-side obligations (for the Responsible AI Use breakdown) ───────
+export const PROVIDER_OBLIGATIONS = [
+  { id: 'p1', t: 'Risk management system', basis: 'Article 9',
+    plain: "Establish, implement, document and maintain a risk management process across the system's entire lifecycle, identifying and mitigating reasonably foreseeable risks." },
+  { id: 'p2', t: 'Data governance', basis: 'Article 10',
+    plain: 'Ensure training, validation and testing data is relevant, sufficiently representative and examined for possible bias, to the extent feasible.' },
+  { id: 'p3', t: 'Technical documentation', basis: 'Article 11',
+    plain: "Draw up and keep up to date documentation showing the system meets the Act's requirements, before placing it on the market." },
+  { id: 'p4', t: 'Logging design', basis: 'Article 12',
+    plain: 'Design the system to automatically generate logs over its lifetime, appropriate to its intended purpose, so deployers can meet their own record-keeping duties.' },
+  { id: 'p5', t: 'Accuracy, robustness and cybersecurity', basis: 'Article 15',
+    plain: 'Meet appropriate, declared levels of accuracy and robustness, and resilience against errors, faults and attempts to exploit vulnerabilities.' },
+  { id: 'p6', t: 'Conformity assessment and CE marking', basis: 'Articles 16–20, 43–48',
+    plain: 'Carry out a conformity assessment against the requirements and affix the CE marking before placing the system on the market.' },
+  { id: 'p7', t: 'EU database registration', basis: 'Article 49',
+    plain: 'Register standalone high-risk systems in the EU database before placing them on the market or putting them into service.' },
+  { id: 'p8', t: 'Quality management system', basis: 'Article 17',
+    plain: 'Operate a documented QMS covering regulatory compliance strategy, design controls, data management, and testing procedures.' },
+  { id: 'p9', t: 'Post-market monitoring', basis: 'Article 72',
+    plain: 'Actively monitor the system after it reaches the market, and report serious incidents to the relevant authorities (Article 73).' },
+]
+
 // ── Layer A: Fixed — Risk-Rationale Library (§6.2) ─────────────────────────
 // Keyed by classKey. Slot {{useCase.name}} / {{system.name}} at render time.
 // HIGH RISK — Annex III
