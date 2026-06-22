@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import { useApp } from '@/lib/store'
-import { REGISTER_CATEGORIES, ragForCategory, basisForCategory, classKeyForCategory, OBS_FOR_RAG } from '@/lib/data'
-import type { RegisterCategory, Tool, UseCase } from '@/lib/types'
+import { REGISTER_CATEGORIES } from '@/lib/data'
+import type { RegisterCategory, Tool } from '@/lib/types'
 
 interface DraftUseCase {
   name: string
@@ -18,6 +18,7 @@ export default function RegisterDrawer() {
   const [name, setName] = useState('')
   const [vendor, setVendor] = useState('')
   const [useCases, setUseCases] = useState<DraftUseCase[]>([emptyUseCase()])
+  const [submitting, setSubmitting] = useState(false)
 
   const reset = () => {
     setName('')
@@ -38,33 +39,28 @@ export default function RegisterDrawer() {
     setUseCases(prev => prev.filter((_, idx) => idx !== i))
   }
 
-  const submit = () => {
+  const submit = async () => {
     if (!name.trim()) { showToast('Tool name is required'); return }
     if (useCases.some(u => !u.name.trim())) { showToast('Every use case needs a name'); return }
 
-    const slug = name.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || `tool-${Date.now()}`
+    setSubmitting(true)
+    try {
+      const res = await fetch('/api/tools', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name.trim(), vendor: vendor.trim(), useCases }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Could not register tool')
 
-    const tool: Tool = {
-      id: slug,
-      name: name.trim(),
-      vendor: vendor.trim() || 'AI tool',
-      useCases: useCases.map((u, i): UseCase => {
-        const rag = ragForCategory(u.category)
-        return {
-          id: `uc-${slug}-${i}`,
-          name: u.name.trim(),
-          rag,
-          classKey: classKeyForCategory(u.category),
-          what: u.what.trim() || 'Use case registered for risk tracking.',
-          basis: basisForCategory(u.category),
-          obligations: OBS_FOR_RAG[rag],
-        }
-      }),
+      addTool(data.tool as Tool)
+      showToast('AI system registered', 'ok')
+      close()
+    } catch (err) {
+      showToast(err instanceof Error ? err.message : 'Could not register tool')
+    } finally {
+      setSubmitting(false)
     }
-
-    addTool(tool)
-    showToast('AI system registered', 'ok')
-    close()
   }
 
   return (
@@ -117,8 +113,8 @@ export default function RegisterDrawer() {
                 <div className="reg-hint">Choosing a category sets the risk rating and the checklist items this use case will trigger.</div>
               </div>
 
-              <button className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: 10 }} onClick={submit}>
-                Register system
+              <button className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: 10 }} onClick={submit} disabled={submitting}>
+                {submitting ? 'Registering…' : 'Register system'}
               </button>
             </div>
           </>

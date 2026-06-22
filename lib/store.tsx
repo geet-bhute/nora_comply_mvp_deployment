@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext, useState, useCallback, useRef } from 'react'
+import React, { createContext, useContext, useState, useCallback, useRef, useEffect } from 'react'
 import type { ChecklistItem, EvidenceItem, Matter, ChatMessage, Tool, Alert, UseCase } from './types'
 import { CHECKLIST, TOOLS, EVIDENCE_DATA, ALERT, INITIAL_MATTERS } from './data'
 
@@ -83,6 +83,21 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   const addUseCase = useCallback((toolId: string, uc: UseCase) => {
     setTools(prev => prev.map(t => t.id === toolId ? { ...t, useCases: [...t.useCases, uc] } : t))
+  }, [])
+
+  // Merge in tools registered via the API (persisted in Supabase) on load.
+  useEffect(() => {
+    fetch('/api/tools')
+      .then(res => res.json())
+      .then((data: { tools?: Tool[] }) => {
+        if (!data.tools?.length) return
+        setTools(prev => {
+          const existingIds = new Set(prev.map(t => t.id))
+          const fresh = data.tools!.filter(t => !existingIds.has(t.id))
+          return fresh.length ? [...prev, ...fresh] : prev
+        })
+      })
+      .catch(err => console.error('[store] failed to load registered tools:', err))
   }, [])
 
   const dismissAlert = useCallback(() => setAlertDismissed(true), [])
