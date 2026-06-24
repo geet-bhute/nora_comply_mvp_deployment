@@ -56,7 +56,11 @@ export default function Home() {
               <span className="dotmark" style={{ background: 'var(--risk-low)' }} />
               Evidence pack ready
             </div>
-            <MockRoadmap tilt />
+            <img
+              src="/screenshots/hero-dashboard.png"
+              alt="Nora Comply dashboard showing a high-risk Bullhorn alert and compliance stats"
+              className="mock tilt hero-shot"
+            />
           </div>
         </div>
       </section>
@@ -64,7 +68,7 @@ export default function Home() {
       {/* PRODUCT SNAPSHOTS */}
       <section className="section" id="product">
         <div className="wrap">
-          <div className="section-head center">
+          <div className="section-head center" style={{ maxWidth: 860 }}>
             <span className="eyebrow"><span className="ln" />The product<span className="ln" /></span>
             <h2>A single source of truth, in snapshots</h2>
             <p>

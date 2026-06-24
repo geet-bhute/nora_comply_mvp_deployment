@@ -109,7 +109,7 @@
    HERO
    ============================================================ */
 .landing-root .hero { background: radial-gradient(120% 90% at 85% 0%, rgba(79,140,255,.20) 0%, transparent 55%), radial-gradient(90% 80% at 0% 100%, rgba(74,126,240,.14) 0%, transparent 60%), var(--green-deep); color: #E4EEFF; position: relative; overflow: hidden; }
-.landing-root .hero-grid { display: grid; grid-template-columns: 1fr 1.08fr; gap: 52px; align-items: center; padding: 62px 0 70px; }
+.landing-root .hero-grid { display: grid; grid-template-columns: 1fr 1.08fr; gap: 52px; align-items: start; padding: 62px 0 36px; }
 .landing-root .hero .eyebrow { color: var(--teal-bright); }
 .landing-root .hero h1 { font-family: var(--serif); font-weight: 500; font-size: 51px; line-height: 1.06; letter-spacing: -.02em; margin: 20px 0 22px; color: #fbf9f4; }
 .landing-root .hero h1 .serif-em { color: var(--teal-bright); }
@@ -227,6 +227,7 @@
 .landing-root .mock { background: #f8faff; border-radius: 11px; overflow: hidden; border: 1px solid var(--line); font-size: 13px; color: var(--ink); display: grid; grid-template-columns: 150px 1fr; min-height: 336px; }
 .landing-root .mock.tilt { transform: perspective(1700px) rotateY(-7deg) rotateX(2deg); transform-origin: left center; box-shadow: var(--shadow-lg); }
 .landing-root .mock.solo { grid-template-columns: 1fr; }
+.landing-root .mock.hero-shot { display: block; width: 100%; height: auto; }
 .landing-root .mk-side { background: var(--paper-2); border-right: 1px solid var(--line); padding: 14px 12px; display: flex; flex-direction: column; }
 .landing-root .mk-brand { display: flex; align-items: center; gap: 8px; font-family: var(--sans); font-weight: 800; font-size: 14px; letter-spacing: -.02em; margin-bottom: 18px; }
 .landing-root .mk-brand .m { width: 20px; height: 20px; border-radius: 6px; background: var(--teal); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; }
