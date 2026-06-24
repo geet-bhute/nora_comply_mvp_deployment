@@ -1,4 +1,6 @@
 /* Minimal shared reset — route-specific styles live in each layout group */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { overflow-x: hidden; max-width: 100%; }
 html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
 a { color: inherit; text-decoration: none; }
+img, svg, video { max-width: 100%; height: auto; display: block; }
