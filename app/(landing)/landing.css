@@ -109,7 +109,7 @@
    HERO
    ============================================================ */
 .landing-root .hero { background: radial-gradient(120% 90% at 85% 0%, rgba(79,140,255,.20) 0%, transparent 55%), radial-gradient(90% 80% at 0% 100%, rgba(74,126,240,.14) 0%, transparent 60%), var(--green-deep); color: #E4EEFF; position: relative; overflow: hidden; }
-.landing-root .hero-grid { display: grid; grid-template-columns: 1fr 1.08fr; gap: 52px; align-items: start; padding: 62px 0 36px; }
+.landing-root .hero-grid { display: grid; grid-template-columns: 1fr 1.08fr; gap: 52px; align-items: center; padding: 62px 0 36px; }
 .landing-root .hero .eyebrow { color: var(--teal-bright); }
 .landing-root .hero h1 { font-family: var(--serif); font-weight: 500; font-size: 51px; line-height: 1.06; letter-spacing: -.02em; margin: 20px 0 22px; color: #fbf9f4; }
 .landing-root .hero h1 .serif-em { color: var(--teal-bright); }
