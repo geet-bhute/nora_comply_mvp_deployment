@@ -66,7 +66,7 @@ export default function Home() {
         <div className="wrap">
           <div className="section-head center">
             <span className="eyebrow"><span className="ln" />Already in your stack<span className="ln" /></span>
-            <h2>Manage the risk of your current tools</h2>
+            <h2>Keep Track of Tools You Already Use</h2>
           </div>
           <div className="tool-logos">
             {[
