@@ -28,7 +28,6 @@ export function StickyHeader() {
           <a href="#eu-act">EU AI Act</a>
         </nav>
         <div className="nav-cta">
-          <Link className={`btn btn-ghost${onDark ? ' on-dark' : ''}`} href="/sign-in">Sign in</Link>
           <Link className="btn btn-primary" href="/demo">Book a demo</Link>
         </div>
       </div>

@@ -278,9 +278,7 @@ export default function Home() {
             <div>
               <h2>Ready to get started?</h2>
               <p>
-                Book a 30-minute demo and we&apos;ll map your AI systems to the Act, live. Already
-                have an account?{' '}
-                <Link href="/sign-in" style={{ color: 'inherit', textDecoration: 'underline', opacity: 0.8 }}>Sign in here.</Link>
+                Book a 30-minute demo and we&apos;ll map your AI systems to the Act, live.
               </p>
             </div>
             <div className="cta-actions">

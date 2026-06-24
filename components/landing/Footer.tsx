@@ -24,7 +24,6 @@ export function Footer() {
             <div className="foot-col">
               <h5>Company</h5>
               <Link href="/demo">Book a demo</Link>
-              <Link href="/sign-in">Sign in</Link>
               <a href="mailto:emily@noracomply.com">emily@noracomply.com</a>
               <a href="mailto:kathryn@noracomply.com">kathryn@noracomply.com</a>
             </div>

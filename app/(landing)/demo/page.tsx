@@ -24,7 +24,6 @@ export default function DemoPage() {
             <a href="/#eu-act">EU AI Act</a>
           </nav>
           <div className="nav-cta">
-            <Link className="btn btn-ghost on-dark" href="/sign-in">Sign in</Link>
             <Link className="btn btn-ghost on-dark" href="/">Back to site</Link>
           </div>
         </div>
