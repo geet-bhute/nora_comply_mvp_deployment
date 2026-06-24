@@ -25,6 +25,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid email address' }, { status: 400 });
     }
 
+    if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+      console.error('[demo] Missing SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY env vars');
+      return NextResponse.json({ error: 'Server misconfigured' }, { status: 500 });
+    }
     const supabase = getSupabase();
 
     // Persist lead — happens first so we never lose an enquiry even if email fails
@@ -43,26 +47,34 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Could not save inquiry' }, { status: 500 });
     }
 
-    // Fire both emails in parallel — failures are logged but don't block the response
-    const resend = new Resend(process.env.RESEND_API_KEY);
-    const [{ error: notifyErr }, { error: confirmErr }] = await Promise.all([
-      resend.emails.send({
-        from: 'Nora Comply <hello@noracomply.com>',
-        to: NOTIFY_EMAILS,
-        replyTo: email.trim(),
-        subject: `New demo request from ${name.trim()} at ${company.trim()}`,
-        html: buildNotifyHtml({ name: name.trim(), email: email.trim(), company: company.trim(), role, size, tools, message }),
-      }),
-      resend.emails.send({
-        from: 'Nora Comply <hello@noracomply.com>',
-        to: email.trim(),
-        subject: 'We received your demo request',
-        html: buildConfirmHtml({ name: name.trim() }),
-      }),
-    ]);
+    // Fire both emails in parallel — a rejected promise or a missing key must never fail the request,
+    // since the lead is already saved above.
+    if (!process.env.RESEND_API_KEY) {
+      console.error('[demo] Missing RESEND_API_KEY env var — skipping notification emails');
+    } else {
+      const resend = new Resend(process.env.RESEND_API_KEY);
+      const [notifyResult, confirmResult] = await Promise.allSettled([
+        resend.emails.send({
+          from: 'Nora Comply <hello@noracomply.com>',
+          to: NOTIFY_EMAILS,
+          replyTo: email.trim(),
+          subject: `New demo request from ${name.trim()} at ${company.trim()}`,
+          html: buildNotifyHtml({ name: name.trim(), email: email.trim(), company: company.trim(), role, size, tools, message }),
+        }),
+        resend.emails.send({
+          from: 'Nora Comply <hello@noracomply.com>',
+          to: email.trim(),
+          subject: 'We received your demo request',
+          html: buildConfirmHtml({ name: name.trim() }),
+        }),
+      ]);
 
-    if (notifyErr) console.error('[demo] Resend notify error:', notifyErr);
-    if (confirmErr) console.error('[demo] Resend confirm error:', confirmErr);
+      if (notifyResult.status === 'rejected') console.error('[demo] Resend notify rejected:', notifyResult.reason);
+      else if (notifyResult.value.error) console.error('[demo] Resend notify error:', notifyResult.value.error);
+
+      if (confirmResult.status === 'rejected') console.error('[demo] Resend confirm rejected:', confirmResult.reason);
+      else if (confirmResult.value.error) console.error('[demo] Resend confirm error:', confirmResult.value.error);
+    }
 
     return NextResponse.json({ success: true });
   } catch (err) {
