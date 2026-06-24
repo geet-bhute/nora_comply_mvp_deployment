@@ -56,11 +56,7 @@ export default function Home() {
               <span className="dotmark" style={{ background: 'var(--risk-low)' }} />
               Evidence pack ready
             </div>
-            <img
-              src="/screenshots/hero-dashboard.png"
-              alt="Nora Comply dashboard showing a high-risk Bullhorn alert and compliance stats"
-              className="mock tilt hero-shot"
-            />
+            <MockRoadmap tilt />
           </div>
         </div>
       </section>
@@ -83,6 +79,54 @@ export default function Home() {
                 <img src={t.src} alt={t.name} />
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* EU AI ACT */}
+      <section className="section tint" id="eu-act">
+        <div className="wrap act-grid">
+          <div className="act-text">
+            <span className="eyebrow"><span className="ln" />The EU AI Act</span>
+            <h2>Your obligations depend on how you use AI</h2>
+            <p>
+              If your business uses AI systems, you have compliance obligations to meet. What you
+              must do depends on what you use your AI for, and that determines its risk level.
+              Limited-risk systems carry transparency duties; high-risk systems carry stringent
+              obligations.
+            </p>
+            <Link className="btn btn-primary btn-lg" href="/demo">
+              Book a demo <span className="arr">→</span>
+            </Link>
+          </div>
+          <div className="risk-tiers">
+            <div className="tier t-low">
+              <span className="t-badge">Minimal</span>
+              <div>
+                <h4>Minimal-risk systems</h4>
+                <p>Most general-purpose tools. Keep a basic inventory and records of where AI is used.</p>
+              </div>
+            </div>
+            <div className="tier t-lim">
+              <span className="t-badge">Limited</span>
+              <div>
+                <h4>Transparency obligations</h4>
+                <p>
+                  Disclose AI use to the people affected, for example telling candidates when AI
+                  is part of the process.
+                </p>
+              </div>
+            </div>
+            <div className="tier t-high">
+              <span className="t-badge">High</span>
+              <div>
+                <h4>Stringent obligations</h4>
+                <p>
+                  Risk management, human oversight, logging and evidence. AI in recruitment
+                  typically lands here.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -160,54 +204,6 @@ export default function Home() {
             <div className="snap-frame">
               <div className="snap-cap"><span className="dot" />noracomply.com/app · Monitoring</div>
               <MockMonitoring />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* EU AI ACT */}
-      <section className="section tint" id="eu-act">
-        <div className="wrap act-grid">
-          <div className="act-text">
-            <span className="eyebrow"><span className="ln" />The EU AI Act</span>
-            <h2>Your obligations depend on how you use AI</h2>
-            <p>
-              If your business uses AI systems, you have compliance obligations to meet. What you
-              must do depends on what you use your AI for, and that determines its risk level.
-              Limited-risk systems carry transparency duties; high-risk systems carry stringent
-              obligations.
-            </p>
-            <Link className="btn btn-primary btn-lg" href="/demo">
-              Book a demo <span className="arr">→</span>
-            </Link>
-          </div>
-          <div className="risk-tiers">
-            <div className="tier t-low">
-              <span className="t-badge">Minimal</span>
-              <div>
-                <h4>Minimal-risk systems</h4>
-                <p>Most general-purpose tools. Keep a basic inventory and records of where AI is used.</p>
-              </div>
-            </div>
-            <div className="tier t-lim">
-              <span className="t-badge">Limited</span>
-              <div>
-                <h4>Transparency obligations</h4>
-                <p>
-                  Disclose AI use to the people affected, for example telling candidates when AI
-                  is part of the process.
-                </p>
-              </div>
-            </div>
-            <div className="tier t-high">
-              <span className="t-badge">High</span>
-              <div>
-                <h4>Stringent obligations</h4>
-                <p>
-                  Risk management, human oversight, logging and evidence. AI in recruitment
-                  typically lands here.
-                </p>
-              </div>
             </div>
           </div>
         </div>
